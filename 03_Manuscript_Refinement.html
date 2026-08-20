@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>AI-Assisted Manuscript Refinement | Complete Interactive Workshop Deck</title>
+<style>
+:root{--bg:#f6f9fc;--ink:#10243b;--muted:#5e7085;--blue:#0b4e8a;--blue2:#147bd1;--cyan:#eaf6ff;--coral:#f17f61;--gold:#f6b74b;--green:#18a071;--red:#d74e4e;--purple:#6459d6;--card:#ffffffee;--shadow:0 24px 70px rgba(18,62,111,.16);--radius:28px;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+*{box-sizing:border-box}html,body{margin:0;height:100%;overflow:hidden;background:var(--bg);color:var(--ink)}
+body{background:radial-gradient(circle at 84% 8%,#d8f1ff 0%,transparent 24%),radial-gradient(circle at 10% 90%,#ffe5dc 0%,transparent 25%),linear-gradient(135deg,#fbfdff,#eef7ff 54%,#fff)}
+a{color:inherit}.deck{position:relative;width:100vw;height:100vh}.slide{position:absolute;inset:0;display:none;padding:54px 66px 82px;overflow:hidden}.slide.active{display:block;animation:fade .35s ease}.slide::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 15% 15%,rgba(20,123,209,.08),transparent 18%),radial-gradient(circle at 92% 80%,rgba(241,127,97,.08),transparent 22%);z-index:-3}@keyframes fade{from{opacity:.15;transform:translateY(10px) scale(.995)}to{opacity:1;transform:translateY(0) scale(1)}}
+h1{font-size:clamp(48px,5.4vw,82px);line-height:.94;margin:0 0 20px;letter-spacing:-2.6px;color:#0d315a}h2{font-size:clamp(34px,3.2vw,54px);line-height:1.04;margin:0 0 20px;letter-spacing:-1.4px;color:#0d315a}h3{font-size:23px;margin:0 0 11px;color:#0d315a}p{font-size:20px;line-height:1.45;color:var(--muted);margin:0 0 12px}ul{font-size:19px;color:var(--muted);line-height:1.45;margin-top:0}.lead{font-size:25px;line-height:1.35;color:#41556e}.small{font-size:13px;color:#68788b;line-height:1.5}.center{text-align:center}.kicker{display:inline-flex;align-items:center;gap:10px;padding:8px 15px;border-radius:999px;color:var(--blue);background:rgba(11,78,138,.08);font-weight:900;letter-spacing:.09em;text-transform:uppercase;font-size:13px;margin-bottom:16px}.grid{display:grid;gap:22px}.grid.two{grid-template-columns:1.02fr .98fr;align-items:center}.grid.three{grid-template-columns:repeat(3,1fr)}.grid.four{grid-template-columns:repeat(4,1fr)}.card{background:var(--card);border:1px solid rgba(16,67,111,.09);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;position:relative;overflow:hidden}.card::after{content:"";position:absolute;right:-40px;bottom:-40px;width:110px;height:110px;border-radius:50%;background:rgba(20,123,209,.06)}.profile::after{background:rgba(241,127,97,.08)}.chips span,.tag{display:inline-flex;padding:8px 12px;border-radius:999px;background:#e9f5ff;color:#0b4e8a;font-weight:900;font-size:13px;margin:0 8px 8px 0}.startbox,.manual-note,.principle-bar,.callout{border-radius:22px;padding:18px 22px;background:rgba(255,255,255,.78);border:1px solid rgba(16,67,111,.10);box-shadow:0 14px 36px rgba(20,70,120,.08);font-size:19px;color:#43566d}.startbox{margin-top:28px}.callout{border-left:7px solid var(--coral)}.callout.danger{border-left-color:var(--red);background:#fff4f4}.principle-bar{margin-top:20px;background:linear-gradient(135deg,#fff7f0,#eef8ff);font-weight:900;color:#0d315a}.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:center}.cover-art{height:480px;border-radius:38px;background:linear-gradient(135deg,#eaf6ff,#fff5ef);box-shadow:var(--shadow);position:relative;overflow:hidden;border:1px solid rgba(16,67,111,.1)}.orb{position:absolute;inset:auto;left:50%;top:50%;width:220px;height:220px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,#fff,#b9e5ff 55%,#67b6ff);box-shadow:0 0 80px rgba(20,123,209,.38);animation:breathe 3.5s ease-in-out infinite}@keyframes breathe{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.08)}}.doc{position:absolute;background:white;border-radius:18px;padding:18px 24px;box-shadow:0 18px 42px rgba(18,62,111,.15);font-weight:950;color:#0d315a}.doc1{left:50px;top:70px;transform:rotate(-8deg)}.doc2{right:42px;top:100px;transform:rotate(7deg)}.doc3{left:90px;bottom:70px;transform:rotate(4deg)}.ai-core,.human-core{position:absolute;width:132px;height:132px;border-radius:32px;background:#0b4e8a;color:white;font-size:30px;line-height:1.0;font-weight:950;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 18px 50px rgba(11,78,138,.28)}.ai-core span,.human-core span{font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-top:7px;opacity:.88}.ai-core{right:110px;bottom:82px}.human-core{left:110px;top:175px;background:#f17f61}.profile-lines p{font-size:19px}.quote{font-size:32px;line-height:1.18;font-weight:900;color:#0d315a;letter-spacing:-.6px;margin-top:22px}.emoji{font-size:38px;margin-bottom:8px}.emoji.big{font-size:86px}.cards-tight .card{min-height:250px}.roadmap{position:relative;height:430px;background:linear-gradient(180deg,#fafdff,#f0f8ff);border-radius:36px;box-shadow:var(--shadow);border:1px solid rgba(20,70,120,.1);overflow:hidden;margin-top:18px}.roadline{position:absolute;left:7%;right:7%;top:50%;height:14px;border-radius:999px;background:linear-gradient(90deg,var(--coral),var(--blue2),var(--green));box-shadow:0 14px 35px rgba(20,123,209,.15)}.car{position:absolute;left:10%;top:50%;transform:translate(-50%,-90%);font-size:42px;animation:drive 5s ease-in-out infinite}@keyframes drive{0%,100%{left:10%}50%{left:88%}}.station{position:absolute;transform:translate(-50%,-50%);width:120px;text-align:center}.station0{left:8%;top:50%}.station1{left:20%;top:30%}.station2{left:32%;top:50%}.station3{left:44%;top:70%}.station4{left:56%;top:50%}.station5{left:68%;top:30%}.station6{left:80%;top:50%}.station7{left:92%;top:70%}.pin{width:54px;height:54px;border-radius:50%;background:white;border:5px solid var(--blue2);margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-weight:950;color:var(--blue);box-shadow:0 12px 30px rgba(20,70,120,.16)}.slabel{font-weight:950;color:#0d315a;font-size:13px}.ssub{font-size:11px;color:#627489}.loop-diagram{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:22px 0}.loop-diagram div{min-height:92px;background:white;border:1px solid rgba(20,70,120,.11);border-radius:24px;padding:18px;font-weight:950;color:#0d315a;display:flex;align-items:center;justify-content:center;text-align:center;box-shadow:0 14px 35px rgba(20,70,120,.08);position:relative}.loop-diagram div::after{content:"→";position:absolute;right:-18px;color:var(--coral);font-size:28px}.loop-diagram div:nth-child(4)::after,.loop-diagram div:nth-child(8)::after{content:""}.manuscript-map{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:18px}.section-card{min-height:210px;border-radius:28px;background:white;border:1px solid rgba(16,67,111,.1);box-shadow:0 16px 40px rgba(20,70,120,.1);padding:20px;overflow:hidden;position:relative}.section-card::after{content:"";position:absolute;right:-25px;bottom:-25px;width:105px;height:105px;border-radius:50%;background:rgba(20,123,209,.08)}.section-card h3{font-size:26px}.use{font-weight:950;color:var(--coral);font-size:14px;margin-top:14px}.goodbad{display:grid;grid-template-columns:1fr 1fr;gap:20px}.good,.bad,.manual-checklist,.so-what,.context-flow,.triangle{background:white;border-radius:28px;padding:24px;box-shadow:var(--shadow);border:1px solid rgba(20,70,120,.1)}.good{border-left:8px solid var(--green)}.bad{border-left:8px solid var(--red)}.triangle{display:flex;flex-direction:column;gap:8px;align-items:center}.triangle div{background:linear-gradient(135deg,#eaf6ff,#fff);border:1px solid rgba(20,70,120,.1);padding:12px 20px;border-radius:18px;text-align:center;font-weight:900;color:#0d315a}.triangle div:nth-child(1){width:95%}.triangle div:nth-child(2){width:82%}.triangle div:nth-child(3){width:68%}.triangle div:nth-child(4){width:52%}.triangle div:nth-child(5){width:38%;background:#fff3ed;color:#aa4c2d}.diagram-row,.final-route{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:22px;flex-wrap:wrap}.diagram-row div,.final-route div{background:white;border:1px solid rgba(20,70,120,.1);box-shadow:0 12px 30px rgba(20,70,120,.08);border-radius:20px;padding:16px 22px;font-weight:950;color:#0d315a}.diagram-row span,.final-route span,.so-what span,.context-flow span{font-size:28px;color:var(--coral);font-weight:950}.context-flow,.so-what{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.context-flow div,.so-what div{background:#eff8ff;border-radius:18px;padding:14px 16px;font-weight:950;color:#0d315a}.route{display:grid;grid-template-columns:repeat(8,1fr);gap:0;position:relative;margin:0 0 18px}.route::before{content:"";position:absolute;left:5%;right:5%;top:22px;height:5px;background:#d9e7f3;border-radius:999px}.node{position:relative;text-align:center;z-index:1}.dot{width:48px;height:48px;border-radius:50%;margin:auto;background:white;border:5px solid #c6d9ea;display:flex;align-items:center;justify-content:center;font-weight:950;color:#789;box-shadow:0 10px 20px rgba(20,70,120,.12)}.node.done .dot{border-color:var(--green);color:var(--green)}.node.current .dot{border-color:var(--coral);color:var(--coral);animation:pulse 1.8s infinite}.label{font-size:12px;font-weight:850;color:#526477;margin-top:8px;line-height:1.15}@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(241,127,97,.35)}70%{box-shadow:0 0 0 16px rgba(241,127,97,0)}100%{box-shadow:0 0 0 0 rgba(241,127,97,0)}}.copybox{position:relative}.prompt{background:#0f243b;color:#eaf6ff;border-radius:20px;padding:20px;white-space:pre-wrap;font-family:"SFMono-Regular",Consolas,ui-monospace,monospace;font-size:13.5px;line-height:1.38;max-height:470px;overflow:auto;border:1px solid rgba(255,255,255,.12);box-shadow:0 24px 70px rgba(18,62,111,.22)}.copy{position:absolute;right:14px;top:14px;border:0;border-radius:999px;background:#f7b24a;color:#221;font-weight:950;padding:9px 14px;cursor:pointer;z-index:4}.next-action{margin-top:16px;border-radius:18px;background:#fff3ed;border:1px solid rgba(241,127,97,.2);padding:16px;font-weight:850;color:#99442a}.time-guide{position:absolute;top:18px;right:24px;background:rgba(255,255,255,.86);border:1px solid rgba(20,70,120,.1);box-shadow:0 10px 26px rgba(20,70,120,.12);border-radius:999px;padding:9px 14px;font-weight:950;color:#0b4e8a;font-size:13px;z-index:55}.slide-task-note{position:absolute;left:66px;bottom:60px;background:rgba(255,255,255,.8);border:1px solid rgba(20,70,120,.09);border-radius:999px;padding:9px 14px;font-size:13px;color:#526477;font-weight:850}.manual-note{margin-top:18px;border-left:7px solid var(--green)}.lunch{text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;height:68vh}.file-names{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:22px}code{background:#10243b;color:#eaf6ff;border-radius:12px;padding:10px 12px;font-size:15px}.redcards .card{border-left:7px solid var(--red)}.refs{columns:2;column-gap:36px;font-size:14.8px;line-height:1.45;color:#43566d}.refs li{break-inside:avoid;margin-bottom:9px}.refs a{color:#0b4e8a;font-weight:850;text-decoration:none}.cite{font-size:.72em;vertical-align:super;color:#0b66b4;text-decoration:none;font-weight:950;margin-left:3px}.closing{height:72vh;display:flex;align-items:center;justify-content:center;text-align:center;flex-direction:column}.closing h1{max-width:980px}.side-route{background:rgba(255,255,255,.72);border:1px solid rgba(20,70,120,.1);border-radius:28px;padding:18px;box-shadow:var(--shadow)}.smallcaps{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#668;font-weight:950;margin-bottom:8px}.nav{position:absolute;left:0;right:0;bottom:0;height:56px;background:rgba(255,255,255,.78);backdrop-filter:blur(12px);border-top:1px solid rgba(20,70,120,.1);display:flex;align-items:center;justify-content:space-between;padding:0 28px;z-index:70}.nav button,.btn{border:0;border-radius:999px;padding:11px 18px;font-weight:950;color:white;background:linear-gradient(135deg,var(--blue),var(--blue2));cursor:pointer;box-shadow:0 10px 24px rgba(20,123,209,.23)}.btn.secondary,.nav button.secondary{background:#edf5fb;color:#0b4e8a;box-shadow:none;border:1px solid rgba(11,78,138,.12)}.counter{font-weight:950;color:#345}.progress{position:absolute;left:0;top:0;height:6px;background:linear-gradient(90deg,var(--coral),var(--blue2),var(--green));width:0%;transition:.3s;z-index:80}.topbar{position:absolute;top:16px;left:24px;display:flex;gap:10px;align-items:center;z-index:65}.pillbtn{border:0;border-radius:999px;background:rgba(255,255,255,.88);border:1px solid rgba(16,67,111,.12);padding:9px 13px;box-shadow:0 10px 28px rgba(20,70,120,.12);font-weight:950;color:#0b4e8a;cursor:pointer}.music-on #musicBtn::after{content:" ON"}#musicBtn::after{content:" OFF"}.copied{position:fixed;right:26px;bottom:74px;background:#13243a;color:#fff;border-radius:999px;padding:12px 18px;box-shadow:var(--shadow);opacity:0;transform:translateY(12px);transition:.25s;z-index:100}.copied.show{opacity:1;transform:translateY(0)}@media(max-width:900px){.grid.two,.grid.three,.grid.four,.hero-grid{grid-template-columns:1fr}.manuscript-map{grid-template-columns:1fr 1fr}.slide{padding:46px 26px 84px;overflow:auto}h1{font-size:42px}h2{font-size:33px}p{font-size:17px}.prompt{max-height:320px}.refs{columns:1}.loop-diagram{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="deck">
+<div class="progress" id="progress"></div>
+<div class="topbar"><button class="pillbtn" id="musicBtn" title="Toggle focus music">🎧 Music</button><button class="pillbtn" id="mapBtn" title="Go to route map">🗺️ Map</button></div>
+<section class="slide title-slide" data-index="0" data-station="0" data-title="From draft to submission-ready manuscript" data-end="09:33" data-duration="3 min" data-task="Set the frame: AI helps reviewers see weaknesses faster; humans remain accountable.">
+  <div class="time-guide">⏱ Finish by 09:33 · 3 min</div>
+  <div class="kicker">AI-assisted manuscript refinement</div>
+  <h2>From draft to submission-ready manuscript</h2>
+  <div class="hero-grid"><div><h1>AI-Assisted Manuscript Refinement</h1><p class="lead">A guided, section-by-section workshop for using AI as a manuscript auditor — not as a ghostwriter.</p><div class="chips"><span>Human-in-the-loop</span><span>IMRaD</span><span>Q1 readiness</span><span>Copy-ready prompts</span></div><div class="startbox"><strong>Workshop time:</strong> 09:30–15:30 · Lunch 12:00–13:00<br/><strong>Student output:</strong> revised manuscript + revision log + final AI disclosure draft</div></div><div class="cover-art"><div class="orb"></div><div class="doc doc1">Abstract</div><div class="doc doc2">Methods</div><div class="doc doc3">Results</div><div class="ai-core">AI<br/><span>Auditor</span></div><div class="human-core">Human<br/><span>Author</span></div></div></div>
+  <div class="slide-task-note">Set the frame: AI helps reviewers see weaknesses faster; humans remain accountable.</div>
+</section><section class="slide " data-index="1" data-station="0" data-title="Wanaruk Chaimayo, PhD" data-end="09:38" data-duration="5 min" data-task="Introduce the instructor and connect AI literacy with manuscript literacy.">
+  <div class="time-guide">⏱ Finish by 09:38 · 5 min</div>
+  <div class="kicker">Instructor</div>
+  <h2>Wanaruk Chaimayo, PhD</h2>
+  <div class="grid two"><div class="card profile"><h2>Wanaruk Chaimayo, PhD</h2><p class="lead">Lead, AI & Digital Transformation for Research Strategy · Mahidol University</p><div class="profile-lines"><p>Research Intelligence · AI-native Research Strategy · Research Information Infrastructure</p><p>MUREX Portal / Elsevier Pure · Bibliometrics & Analytics · RAG for Research Management</p><p>Background: Condensed Matter Physics, Biomedical Engineering, IP, Translational Research</p></div></div><div class="card"><h3>Why this workshop matters</h3><p>Manuscript refinement is no longer only a writing task. It is a combined literacy task: scientific logic, reporting quality, AI literacy, publication ethics, and human accountability.</p><div class="quote">“Use AI to see your manuscript more clearly — not to replace your responsibility as a researcher.”</div></div></div>
+  <div class="slide-task-note">Introduce the instructor and connect AI literacy with manuscript literacy.</div>
+</section><section class="slide " data-index="2" data-station="0" data-title="What students will be able to do today" data-end="09:42" data-duration="4 min" data-task="Clarify realistic outcomes for a one-day workshop.">
+  <div class="time-guide">⏱ Finish by 09:42 · 4 min</div>
+  <div class="kicker">Learning promise</div>
+  <h2>What students will be able to do today</h2>
+  <div class="grid four cards-tight"><div class="card"><div class="emoji">🧭</div><h3>Navigate</h3><p>Know which prompt to use at each manuscript station.</p></div><div class="card"><div class="emoji">🔍</div><h3>Audit</h3><p>Use AI to identify weaknesses in structure, logic, reporting, and clarity.</p></div><div class="card"><div class="emoji">✍️</div><h3>Revise</h3><p>Manually edit the manuscript after judging AI feedback.</p></div><div class="card"><div class="emoji">✅</div><h3>Submit better</h3><p>Check final readiness, disclosure, and major red flags.</p></div></div><div class="callout"><strong>Important:</strong> The goal is not a perfect manuscript by 15:30. The goal is a clear diagnosis, a stronger draft, and a practical revision route.</div>
+  <div class="slide-task-note">Clarify realistic outcomes for a one-day workshop.</div>
+</section><section class="slide " data-index="3" data-station="0" data-title="Today’s manuscript refinement journey" data-end="09:47" data-duration="5 min" data-task="Show the overall navigation route before students begin.">
+  <div class="time-guide">⏱ Finish by 09:47 · 5 min</div>
+  <div class="kicker">Google-map style route</div>
+  <h2>Today’s manuscript refinement journey</h2>
+  <p class="lead">Each station has a principle slide, a copy-ready prompt slide, and a manual revision checkpoint.</p><div class="roadmap"><div class="roadline"></div><div class="car">🚗</div><div class="station station0"><div class="pin">0</div><div class="slabel">Prepare</div><div class="ssub">Anonymize + open file</div></div><div class="station station1"><div class="pin">1</div><div class="slabel">Full Audit</div><div class="ssub">Upload full draft</div></div><div class="station station2"><div class="pin">2</div><div class="slabel">Context</div><div class="ssub">New chat + summary</div></div><div class="station station3"><div class="pin">3</div><div class="slabel">Intro</div><div class="ssub">Gap + objective</div></div><div class="station station4"><div class="pin">4</div><div class="slabel">Methods</div><div class="ssub">Reproducibility</div></div><div class="station station5"><div class="pin">5</div><div class="slabel">Results</div><div class="ssub">No interpretation</div></div><div class="station station6"><div class="pin">6</div><div class="slabel">Discussion</div><div class="ssub">So what?</div></div><div class="station station7"><div class="pin">7</div><div class="slabel">Final</div><div class="ssub">Readiness</div></div></div>
+  <div class="slide-task-note">Show the overall navigation route before students begin.</div>
+</section><section class="slide " data-index="4" data-station="0" data-title="The repeated student workflow loop" data-end="09:55" data-duration="8 min" data-task="Teach students the repeatable loop.">
+  <div class="time-guide">⏱ Finish by 09:55 · 8 min</div>
+  <div class="kicker">How to follow</div>
+  <h2>The repeated student workflow loop</h2>
+  <div class="loop-diagram"><div>Upload latest full manuscript</div><div>Run context summary</div><div>Copy station prompt</div><div>Read AI feedback</div><div>Judge what is valid</div><div>Edit manually in Word</div><div>Save new version</div><div>Open new chat</div></div><div class="grid three"><div class="card"><h3>Do in AI chat</h3><p>Ask for audit, critique, and explanation.</p></div><div class="card"><h3>Do in Word</h3><p>Make real manuscript edits manually.</p></div><div class="card"><h3>Do between stations</h3><p>Save a new file version and start a fresh chat.</p></div></div>
+  <div class="slide-task-note">Teach students the repeatable loop.</div>
+</section><section class="slide " data-index="5" data-station="0" data-title="Choose the AI tool by task — not by habit" data-end="10:03" data-duration="8 min" data-task="Clarify tool roles and privacy risk.">
+  <div class="time-guide">⏱ Finish by 10:03 · 8 min</div>
+  <div class="kicker">Tool choice</div>
+  <h2>Choose the AI tool by task — not by habit</h2>
+  <div class="grid three"><div class="card"><h3>Manuscript audit</h3><p><strong>ChatGPT / Claude / Gemini</strong></p><p>Structure, logic, readability, and reviewer-style critique.</p></div><div class="card"><h3>Evidence checking</h3><p><strong>Consensus / PubMed / Google Scholar</strong></p><p>Literature verification, research gaps, and evidence strength.</p></div><div class="card"><h3>Reference control</h3><p><strong>Zotero / EndNote / Mendeley</strong></p><p>Final reference formatting, DOI, and citation consistency.</p></div></div><div class="callout danger"><strong>Privacy rule:</strong> Do not upload identifiable patient data or confidential documents into public AI tools. Mask sensitive data first.</div>
+  <div class="slide-task-note">Clarify tool roles and privacy risk.</div>
+</section><section class="slide " data-index="6" data-station="0" data-title="Which prompt goes with which manuscript section?" data-end="10:10" data-duration="7 min" data-task="Give students the big picture before individual prompts.">
+  <div class="time-guide">⏱ Finish by 10:10 · 7 min</div>
+  <div class="kicker">Graphic overview</div>
+  <h2>Which prompt goes with which manuscript section?</h2>
+  <div class="manuscript-map"><div class="section-card"><h3>Abstract</h3><p>Is the study clear and compelling?</p><div class="use">Overall + Abstract Prompt</div></div><div class="section-card"><h3>Introduction</h3><p>Broad problem → gap → objective.</p><div class="use">Inverted Triangle Prompt</div></div><div class="section-card"><h3>Methods</h3><p>Can reviewers reproduce the study?</p><div class="use">Methods + Guideline Prompt</div></div><div class="section-card"><h3>Results</h3><p>Report findings without interpretation.</p><div class="use">Results Prompt</div></div><div class="section-card"><h3>Discussion</h3><p>Explain meaning, limits, and value.</p><div class="use">So What? Prompt</div></div></div><div class="manual-note"><strong>Manual-only final checks:</strong> numbers, references, figure resolution, color accessibility, ethics, journal formatting.</div>
+  <div class="slide-task-note">Give students the big picture before individual prompts.</div>
+</section><section class="slide " data-index="7" data-station="0" data-title="AI is the auditor. The researcher is the accountable author." data-end="10:20" data-duration="10 min" data-task="Explain the ethical boundary before copy-paste prompting.">
+  <div class="time-guide">⏱ Finish by 10:20 · 10 min</div>
+  <div class="kicker">Principle 1</div>
+  <h2>AI is the auditor. The researcher is the accountable author.</h2>
+  <div class="grid two"><div class="card"><h3>The boundary</h3><p>AI may detect weak logic, unclear claims, reporting gaps, and readability issues. It must not invent data, methods, references, or conclusions.</p><p>Recent reviews consistently frame GenAI as an assistive scaffold, not a substitute for human judgment <a class="cite" href="https://consensus.app/papers/artificial-intelligenceassisted-academic-writing-cheng-calhoun/745e81333e085ad1b5a83d4835ffeb42/?utm_source=chatgpt" target="_blank">[7]</a> <a class="cite" href="https://consensus.app/papers/generative-artificial-intelligence-genai-for-academic-gabay-funa/ddbc9ec2b7cd50bb8e3f82e965fa8eff/?utm_source=chatgpt" target="_blank">[8]</a> <a class="cite" href="https://consensus.app/papers/generative-artificial-intelligence-in-academic-writing-chanpradit/38ae71e02c3752a9af42826eb2013266/?utm_source=chatgpt" target="_blank">[9]</a>.</p></div><div class="goodbad"><div class="good"><h3>Good use</h3><p>“Identify weaknesses and explain why they matter.”</p><p>“Suggest revision directions without changing meaning.”</p></div><div class="bad"><h3>Unsafe use</h3><p>“Write my Discussion for me.”</p><p>“Add citations and make it sound publishable.”</p></div></div></div><div class="principle-bar"><strong>Rule:</strong> AI suggests → Human judges → Human revises → Human is accountable.</div>
+  <div class="slide-task-note">Explain the ethical boundary before copy-paste prompting.</div>
+</section><section class="slide " data-index="8" data-station="0" data-title="Master safety prompt" data-end="10:30" data-duration="10 min" data-task="Students copy the safety prompt.">
+  <div class="time-guide">⏱ Finish by 10:30 · 10 min</div>
+  <div class="kicker">Prompt 0</div>
+  <h2>Master safety prompt</h2>
+  <div class="grid two"><div><div class="route"><div class="node current"><div class="dot">0</div><div class="label">Prepare</div></div><div class="node "><div class="dot">1</div><div class="label">Full audit</div></div><div class="node "><div class="dot">2</div><div class="label">Context</div></div><div class="node "><div class="dot">3</div><div class="label">Intro</div></div><div class="node "><div class="dot">4</div><div class="label">Methods</div></div><div class="node "><div class="dot">5</div><div class="label">Results</div></div><div class="node "><div class="dot">6</div><div class="label">Discussion</div></div><div class="node "><div class="dot">7</div><div class="label">Final</div></div></div><div class="card"><h3>Student action</h3><p>Copy this first in any new chat where the AI might be asked to critique manuscript content.</p><p>It sets the role: <strong>auditor, not ghostwriter</strong>.</p></div></div><div class="copybox"><button class="copy" data-copy="master">Copy prompt</button><pre class="prompt" id="master">You are assisting me as a manuscript auditor, not as a ghostwriter.
+
+Your role is to review, critique, and suggest improvements to my manuscript. Do not invent new data, do not add new references, do not create new study methods, and do not rewrite the manuscript as if you were the author.
+
+Follow these rules:
+1. Do not fabricate information.
+2. Do not add claims that are not supported by the manuscript.
+3. Do not create or guess citations.
+4. Do not change the scientific meaning.
+5. Identify weaknesses and explain why they matter.
+6. Provide suggestions in a point-by-point format.
+7. Separate your feedback into:
+   - Major concerns
+   - Minor concerns
+   - Actionable revision suggestions
+8. For each suggestion, explain whether the issue is related to clarity, structure, logic, novelty, methodology, statistics, ethics, reporting quality, or journal fit.
+
+Here is the manuscript/section to audit:
+[Paste text or upload file]</pre></div></div>
+  <div class="slide-task-note">Students copy the safety prompt.</div>
+</section><section class="slide " data-index="9" data-station="2" data-title="Context windows fill up. Restart deliberately." data-end="10:40" data-duration="10 min" data-task="Explain the new-chat/context-reset workflow.">
+  <div class="time-guide">⏱ Finish by 10:40 · 10 min</div>
+  <div class="kicker">Principle 2</div>
+  <h2>Context windows fill up. Restart deliberately.</h2>
+  <div class="grid two"><div class="card"><h3>Why new chats?</h3><p>Long conversations can cause context-window problems. The AI may forget earlier constraints, mix up sections, or respond with lower precision.</p><p>The safer route is to open a fresh chat for each major section, upload the latest full manuscript, and ask for a structured summary before the next audit.</p></div><div class="context-flow"><div>Open new chat</div><span>→</span><div>Upload latest version</div><span>→</span><div>Ask for context summary</div><span>→</span><div>Check summary</div><span>→</span><div>Run section prompt</div></div></div><div class="callout"><strong>Do not just ask “Got it?”</strong> Ask the AI to summarize the research question, design, methods, results, and conclusion. If the summary is wrong, correct it before using the next prompt.</div>
+  <div class="slide-task-note">Explain the new-chat/context-reset workflow.</div>
+</section><section class="slide " data-index="10" data-station="2" data-title="Context confirmation prompt" data-end="10:50" data-duration="10 min" data-task="Students copy the context prompt.">
+  <div class="time-guide">⏱ Finish by 10:50 · 10 min</div>
+  <div class="kicker">Prompt 1</div>
+  <h2>Context confirmation prompt</h2>
+  <div class="grid two"><div><div class="route"><div class="node done"><div class="dot">0</div><div class="label">Prepare</div></div><div class="node done"><div class="dot">1</div><div class="label">Full audit</div></div><div class="node current"><div class="dot">2</div><div class="label">Context</div></div><div class="node "><div class="dot">3</div><div class="label">Intro</div></div><div class="node "><div class="dot">4</div><div class="label">Methods</div></div><div class="node "><div class="dot">5</div><div class="label">Results</div></div><div class="node "><div class="dot">6</div><div class="label">Discussion</div></div><div class="node "><div class="dot">7</div><div class="label">Final</div></div></div><div class="card"><h3>Student action</h3><p>Use this every time you open a new chat. It helps the AI rebuild manuscript context before section-level checking.</p><div class="next-action">After the AI summary: verify it. If correct, continue. If wrong, correct the context first.</div></div></div><div class="copybox"><button class="copy" data-copy="context">Copy prompt</button><pre class="prompt" id="context">I am uploading the latest revised version of my manuscript. Please read it only for context.
+
+Do not revise it yet. Do not generate new content. Do not add references. Do not rewrite any section.
+
+First, summarize the manuscript in the following structure:
+1. Research question
+2. Study design
+3. Population/sample
+4. Main methods
+5. Key results
+6. Main conclusion
+7. Claimed novelty or significance
+8. Any unclear context that you need me to clarify before auditing
+
+After summarizing, stop and wait for my next instruction.
+
+Important: If you cannot read or understand the file, say so clearly. Do not pretend that you have read it.</pre></div></div>
+  <div class="slide-task-note">Students copy the context prompt.</div>
+</section><section class="slide " data-index="11" data-station="1" data-title="Overall manuscript and abstract: first impression matters" data-end="11:00" data-duration="10 min" data-task="Prepare students for full manuscript audit.">
+  <div class="time-guide">⏱ Finish by 11:00 · 10 min</div>
+  <div class="kicker">Principle 3</div>
+  <h2>Overall manuscript and abstract: first impression matters</h2>
+  <div class="grid two"><div class="card"><h3>What editors screen quickly</h3><p>Initial editorial screening often looks for scope, clear objective, appropriate design, readable structure, and whether the manuscript’s sections align. Critical appraisal also examines validity, reliability, applicability, and generalisability <a class="cite" href="https://consensus.app/papers/critical-appraisal-of-an-original-research-article-santhanam-ravindran/15fe11a2592f591390aeb97c20629d8a/?utm_source=chatgpt" target="_blank">[2]</a>.</p></div><div class="card"><h3>Abstract principle</h3><p>The abstract should be a reliable miniature of the study: objective, methods, key results, and conclusion. It should communicate novelty without exaggeration.</p><p>Structured reporting improves clarity and helps reviewers locate key information faster <a class="cite" href="https://consensus.app/papers/please-say-it-clearly-a-reflection-on-proper-style-of-cornell/0959a77c92895cc8a15211f315565ade/?utm_source=chatgpt" target="_blank">[1]</a> <a class="cite" href="https://consensus.app/papers/critical-appraisal-of-an-original-research-article-santhanam-ravindran/15fe11a2592f591390aeb97c20629d8a/?utm_source=chatgpt" target="_blank">[2]</a>.</p></div></div><div class="diagram-row"><div>Question</div><span>→</span><div>Methods</div><span>→</span><div>Results</div><span>→</span><div>Conclusion</div></div>
+  <div class="slide-task-note">Prepare students for full manuscript audit.</div>
+</section><section class="slide " data-index="12" data-station="1" data-title="Overall manuscript audit" data-end="11:15" data-duration="15 min" data-task="Students run overall audit and mark priority revisions.">
+  <div class="time-guide">⏱ Finish by 11:15 · 15 min</div>
+  <div class="kicker">Prompt 2</div>
+  <h2>Overall manuscript audit</h2>
+  <div class="grid two"><div><div class="route"><div class="node done"><div class="dot">0</div><div class="label">Prepare</div></div><div class="node current"><div class="dot">1</div><div class="label">Full audit</div></div><div class="node "><div class="dot">2</div><div class="label">Context</div></div><div class="node "><div class="dot">3</div><div class="label">Intro</div></div><div class="node "><div class="dot">4</div><div class="label">Methods</div></div><div class="node "><div class="dot">5</div><div class="label">Results</div></div><div class="node "><div class="dot">6</div><div class="label">Discussion</div></div><div class="node "><div class="dot">7</div><div class="label">Final</div></div></div><div class="card"><h3>Student action</h3><p>Upload the full manuscript. Run the prompt. Read the top 5 weaknesses.</p><div class="next-action">Then manually fix high-level structure and abstract clarity in Word.</div></div></div><div class="copybox"><button class="copy" data-copy="overall">Copy prompt</button><pre class="prompt" id="overall">Act as a senior medical journal editor reviewing a manuscript for possible submission to a Q1 journal.
+
+Please audit the entire manuscript for:
+1. Overall IMRaD structure
+2. Scientific logic and flow
+3. Alignment between research question, methods, results, and conclusion
+4. Clarity of novelty and significance
+5. Clinical, public health, or scientific relevance
+6. Academic tone and readability
+7. Overclaiming or unsupported statements
+8. Missing ethical, funding, conflict-of-interest, or AI-use disclosure information
+9. Weaknesses that may lead to desk rejection
+
+Important restrictions:
+- Do not rewrite the manuscript.
+- Do not add new data.
+- Do not invent citations.
+- Do not design new methods.
+- Provide feedback only as an auditor.
+
+Output format:
+1. Executive summary of manuscript readiness
+2. Top 5 strengths
+3. Top 5 weaknesses
+4. Section-by-section comments
+5. Priority revision checklist before submission</pre></div></div>
+  <div class="slide-task-note">Students run overall audit and mark priority revisions.</div>
+</section><section class="slide " data-index="13" data-station="1" data-title="Abstract audit" data-end="11:25" data-duration="10 min" data-task="Students refine the abstract with human verification.">
+  <div class="time-guide">⏱ Finish by 11:25 · 10 min</div>
+  <div class="kicker">Prompt 3</div>
+  <h2>Abstract audit</h2>
+  <div class="grid two"><div><div class="card"><h3>Student action</h3><p>Use this if your abstract is weak or if the journal requires a structured abstract.</p><p>Check whether the abstract matches the full manuscript after revisions.</p></div><div class="manual-note"><strong>Manual edit:</strong> revise only claims supported by actual results.</div></div><div class="copybox"><button class="copy" data-copy="abstract">Copy prompt</button><pre class="prompt" id="abstract">Act as a medical journal editor reviewing the abstract of a manuscript intended for an international Q1 journal.
+
+Please evaluate whether the abstract:
+1. Clearly states the background or rationale
+2. Presents the objective clearly
+3. Summarizes the methods appropriately
+4. Reports the key results with enough specificity
+5. Highlights novelty or significance early and clearly
+6. Avoids overclaiming
+7. Matches the main manuscript
+8. Uses concise and formal academic English
+9. Fits a structured or unstructured abstract format required by the target journal
+
+Important restrictions:
+- Do not invent results.
+- Do not add new claims.
+- Do not rewrite the abstract fully unless I explicitly ask.
+- Provide critique and revision guidance only.
+
+Output format:
+1. Overall assessment
+2. What is clear
+3. What is missing or weak
+4. Sentences that need improvement
+5. Actionable recommendations
+6. A checklist for final abstract revision</pre></div></div>
+  <div class="slide-task-note">Students refine the abstract with human verification.</div>
+</section><section class="slide " data-index="14" data-station="3" data-title="Introduction: from broad problem to specific gap" data-end="11:35" data-duration="10 min" data-task="Teach Introduction principle before copy prompt.">
+  <div class="time-guide">⏱ Finish by 11:35 · 10 min</div>
+  <div class="kicker">Principle 4</div>
+  <h2>Introduction: from broad problem to specific gap</h2>
+  <div class="grid two"><div class="card"><h3>The inverted triangle</h3><p>The Introduction should justify why the study was needed. A focused IMRaD Introduction moves from current knowledge to knowledge deficiency, then to the study question and objective <a class="cite" href="https://consensus.app/papers/please-say-it-clearly-a-reflection-on-proper-style-of-cornell/0959a77c92895cc8a15211f315565ade/?utm_source=chatgpt" target="_blank">[1]</a> <a class="cite" href="https://consensus.app/papers/critical-appraisal-of-an-original-research-article-santhanam-ravindran/15fe11a2592f591390aeb97c20629d8a/?utm_source=chatgpt" target="_blank">[2]</a>.</p></div><div class="triangle"><div>Broad health / scientific problem</div><div>Why it matters</div><div>What is known</div><div>Knowledge gap</div><div>Objective + novelty</div></div></div><div class="principle-bar"><strong>Ask:</strong> If the reader only reads the final paragraph of the Introduction, can they identify the research question and why it matters?</div>
+  <div class="slide-task-note">Teach Introduction principle before copy prompt.</div>
+</section><section class="slide " data-index="15" data-station="3" data-title="Introduction audit" data-end="11:50" data-duration="15 min" data-task="Students run Introduction audit and revise manually.">
+  <div class="time-guide">⏱ Finish by 11:50 · 15 min</div>
+  <div class="kicker">Prompt 4</div>
+  <h2>Introduction audit</h2>
+  <div class="grid two"><div><div class="route"><div class="node done"><div class="dot">0</div><div class="label">Prepare</div></div><div class="node done"><div class="dot">1</div><div class="label">Full audit</div></div><div class="node done"><div class="dot">2</div><div class="label">Context</div></div><div class="node current"><div class="dot">3</div><div class="label">Intro</div></div><div class="node "><div class="dot">4</div><div class="label">Methods</div></div><div class="node "><div class="dot">5</div><div class="label">Results</div></div><div class="node "><div class="dot">6</div><div class="label">Discussion</div></div><div class="node "><div class="dot">7</div><div class="label">Final</div></div></div><div class="card"><h3>Student action</h3><p>Open a new chat. Upload the latest revised manuscript. Run the context prompt first. Then run this Introduction prompt.</p><div class="next-action">Manual edit: tighten gap, objective, and novelty. Do not add literature that you have not read.</div></div></div><div class="copybox"><button class="copy" data-copy="intro">Copy prompt</button><pre class="prompt" id="intro">Act as a senior medical journal editor reviewing the Introduction section.
+
+Please evaluate whether the Introduction follows an inverted triangle structure:
+1. Broad context of the problem
+2. Importance of the problem
+3. Current state of knowledge
+4. Clear knowledge gap
+5. Research question or hypothesis
+6. Study objective
+7. Novelty and urgency: why this study matters now
+
+Also evaluate:
+- Logical flow between paragraphs
+- Use of evidence
+- Clarity of the research gap
+- Alignment between the gap and the objective
+- Appropriate tense usage
+- Whether the Introduction is too long, too broad, or too descriptive
+
+Important restrictions:
+- Do not add new literature.
+- Do not create citations.
+- Do not rewrite the Introduction from scratch.
+- Do not claim novelty unless it is supported by the manuscript.
+
+Output format:
+1. Overall assessment
+2. Paragraph-by-paragraph feedback
+3. Missing logical links
+4. Weak or unclear claims
+5. Suggestions to strengthen novelty and significance
+6. Priority revision checklist</pre></div></div>
+  <div class="slide-task-note">Students run Introduction audit and revise manually.</div>
+</section><section class="slide " data-index="16" data-station="4" data-title="Methods: transparency, reproducibility, and reviewer trust" data-end="12:00" data-duration="10 min" data-task="Teach Methods principle before lunch.">
+  <div class="time-guide">⏱ Finish by 12:00 · 10 min</div>
+  <div class="kicker">Principle 5</div>
+  <h2>Methods: transparency, reproducibility, and reviewer trust</h2>
+  <div class="grid two"><div class="card"><h3>Methods are the credibility engine</h3><p>The Methods section enables reviewers to judge validity and replicability. It should cover study question, design, population, sample size, outcome measures, statistical analysis, and ethics approval <a class="cite" href="https://consensus.app/papers/critical-appraisal-of-an-original-research-article-santhanam-ravindran/15fe11a2592f591390aeb97c20629d8a/?utm_source=chatgpt" target="_blank">[2]</a>.</p></div><div class="card"><h3>Reporting guideline ≠ study quality</h3><p>CONSORT, STROBE, PRISMA, STARD and related tools improve clarity and completeness of reporting, but they do not repair a flawed study design <a class="cite" href="https://consensus.app/papers/guidelines-for-a-structured-manuscript-statistical-christensen-ranstam/438ceb65ba5953ffa88e77e0cd08283c/?utm_source=chatgpt" target="_blank">[3]</a> <a class="cite" href="https://consensus.app/papers/reducing-waste-from-incomplete-or-unusable-reports-of-glasziou-altman/ea4fe9940d0051bda81f01eca44da7b8/?utm_source=chatgpt" target="_blank">[4]</a>.</p></div></div><div class="diagram-row"><div>Design</div><span>→</span><div>Participants</div><span>→</span><div>Measures</div><span>→</span><div>Analysis</div><span>→</span><div>Ethics</div></div>
+  <div class="slide-task-note">Teach Methods principle before lunch.</div>
+</section><section class="slide " data-index="17" data-station="0" data-title="Resume at 13:00" data-end="13:00" data-duration="60 min" data-task="Lunch and file-saving checkpoint.">
+  <div class="time-guide">⏱ Finish by 13:00 · 60 min</div>
+  <div class="kicker">Lunch break</div>
+  <h2>Resume at 13:00</h2>
+  <div class="lunch"><div class="emoji big">🍱</div><h2>Lunch Break</h2><p>Before returning: save your revised manuscript version. You will upload the latest file in a new chat after lunch.</p></div>
+  <div class="slide-task-note">Lunch and file-saving checkpoint.</div>
+</section><section class="slide " data-index="18" data-station="4" data-title="Methods audit" data-end="13:15" data-duration="15 min" data-task="Students run Methods audit.">
+  <div class="time-guide">⏱ Finish by 13:15 · 15 min</div>
+  <div class="kicker">Prompt 5</div>
+  <h2>Methods audit</h2>
+  <div class="grid two"><div><div class="route"><div class="node done"><div class="dot">0</div><div class="label">Prepare</div></div><div class="node done"><div class="dot">1</div><div class="label">Full audit</div></div><div class="node done"><div class="dot">2</div><div class="label">Context</div></div><div class="node done"><div class="dot">3</div><div class="label">Intro</div></div><div class="node current"><div class="dot">4</div><div class="label">Methods</div></div><div class="node "><div class="dot">5</div><div class="label">Results</div></div><div class="node "><div class="dot">6</div><div class="label">Discussion</div></div><div class="node "><div class="dot">7</div><div class="label">Final</div></div></div><div class="card"><h3>Student action</h3><p>Open a new chat. Upload the latest full manuscript. Run the context prompt. Then run Methods audit.</p><div class="next-action">Manual edit: add only information that was actually done. Never let AI redesign your study.</div></div></div><div class="copybox"><button class="copy" data-copy="methods">Copy prompt</button><pre class="prompt" id="methods">Act as a methodological reviewer for a medical journal.
+
+Please audit the Methods section for:
+1. Study design clarity
+2. Study setting and period
+3. Participant/sample selection
+4. Inclusion and exclusion criteria
+5. Intervention/exposure description
+6. Outcome definitions
+7. Data collection procedures
+8. Statistical analysis
+9. Handling of missing data
+10. Ethical approval
+11. Funding and conflict-of-interest information
+12. Reproducibility
+13. Alignment with the study objective
+14. Appropriate reporting guideline, such as CONSORT, STROBE, PRISMA, STARD, CARE, ARRIVE, COREQ, CHEERS, SPIRIT, or TRIPOD
+
+Important restrictions:
+- Do not redesign the study.
+- Do not add procedures that were not performed.
+- Do not create new analysis plans.
+- Identify only what is missing, unclear, or insufficiently reported.
+
+Output format:
+1. Major methodological concerns
+2. Missing information
+3. Reporting guideline checklist items that may be missing
+4. Questions reviewers may ask
+5. Actionable revision checklist</pre></div></div>
+  <div class="slide-task-note">Students run Methods audit.</div>
+</section><section class="slide " data-index="19" data-station="4" data-title="Reporting guideline selector" data-end="13:25" data-duration="10 min" data-task="Students identify reporting guideline and checklist.">
+  <div class="time-guide">⏱ Finish by 13:25 · 10 min</div>
+  <div class="kicker">Prompt 6</div>
+  <h2>Reporting guideline selector</h2>
+  <div class="grid two"><div class="card"><h3>When to use</h3><p>Use this prompt to identify the likely reporting guideline. Then verify manually using the journal instructions and the EQUATOR Network.</p><p>Complete reporting reduces waste and improves communication of biomedical research <a class="cite" href="https://consensus.app/papers/reducing-waste-from-incomplete-or-unusable-reports-of-glasziou-altman/ea4fe9940d0051bda81f01eca44da7b8/?utm_source=chatgpt" target="_blank">[4]</a>.</p></div><div class="copybox"><button class="copy" data-copy="guideline">Copy prompt</button><pre class="prompt" id="guideline">Act as a reporting guideline advisor.
+
+Based on the manuscript information below, identify the most appropriate reporting guideline.
+
+Please determine whether this study should follow:
+- CONSORT
+- STROBE
+- PRISMA
+- STARD
+- CARE
+- ARRIVE
+- COREQ
+- CHEERS
+- SPIRIT
+- TRIPOD
+- Other relevant guideline
+
+Then provide:
+1. Recommended reporting guideline
+2. Why this guideline is appropriate
+3. Key checklist items that the manuscript should verify
+4. Missing items likely to concern reviewers
+5. Practical next steps before submission
+
+Important restrictions:
+- Do not assume a study design if it is unclear.
+- Ask clarification questions if needed.
+- Do not claim compliance unless the manuscript provides evidence.
+
+Manuscript/study description:
+[Paste study description or Methods section]</pre></div></div>
+  <div class="slide-task-note">Students identify reporting guideline and checklist.</div>
+</section><section class="slide " data-index="20" data-station="5" data-title="Results: report what was found — not why it happened" data-end="13:38" data-duration="13 min" data-task="Teach Results principle.">
+  <div class="time-guide">⏱ Finish by 13:38 · 13 min</div>
+  <div class="kicker">Principle 6</div>
+  <h2>Results: report what was found — not why it happened</h2>
+  <div class="grid two"><div class="card"><h3>The Results section answers the study questions</h3><p>Results should correspond to objectives and present findings clearly. The text should highlight key results and point readers to tables/figures without repeating every number <a class="cite" href="https://consensus.app/papers/please-say-it-clearly-a-reflection-on-proper-style-of-cornell/0959a77c92895cc8a15211f315565ade/?utm_source=chatgpt" target="_blank">[1]</a>.</p></div><div class="card"><h3>Statistical reporting</h3><p>Report effect sizes and confidence intervals where appropriate. A non-significant p-value is not proof of “no difference”; conclusions should reflect uncertainty and clinical relevance <a class="cite" href="https://consensus.app/papers/guidelines-for-a-structured-manuscript-statistical-christensen-ranstam/438ceb65ba5953ffa88e77e0cd08283c/?utm_source=chatgpt" target="_blank">[3]</a>.</p></div></div><div class="goodbad"><div class="good"><h3>Good Results sentence</h3><p>Reports the direction, magnitude, uncertainty, and table/figure reference.</p></div><div class="bad"><h3>Bad Results sentence</h3><p>Explains causes, implications, or mechanisms. That belongs in Discussion.</p></div></div>
+  <div class="slide-task-note">Teach Results principle.</div>
+</section><section class="slide " data-index="21" data-station="5" data-title="Results audit" data-end="13:55" data-duration="17 min" data-task="Students run Results audit.">
+  <div class="time-guide">⏱ Finish by 13:55 · 17 min</div>
+  <div class="kicker">Prompt 7</div>
+  <h2>Results audit</h2>
+  <div class="grid two"><div><div class="route"><div class="node done"><div class="dot">0</div><div class="label">Prepare</div></div><div class="node done"><div class="dot">1</div><div class="label">Full audit</div></div><div class="node done"><div class="dot">2</div><div class="label">Context</div></div><div class="node done"><div class="dot">3</div><div class="label">Intro</div></div><div class="node done"><div class="dot">4</div><div class="label">Methods</div></div><div class="node current"><div class="dot">5</div><div class="label">Results</div></div><div class="node "><div class="dot">6</div><div class="label">Discussion</div></div><div class="node "><div class="dot">7</div><div class="label">Final</div></div></div><div class="card"><h3>Student action</h3><p>Prepare Results + tables/figures as a PDF if needed. Open a new chat and upload the latest file.</p><div class="next-action">Manual edit: fix reporting order, remove interpretation, and verify all numbers yourself.</div></div></div><div class="copybox"><button class="copy" data-copy="results">Copy prompt</button><pre class="prompt" id="results">Act as a statistical and results-section reviewer for a medical journal.
+
+Please audit the Results section for:
+1. Whether results are presented in the same order as the objectives
+2. Whether the section reports findings without interpretation
+3. Whether all main outcomes are clearly reported
+4. Whether effect sizes and confidence intervals are included where appropriate
+5. Whether p-values are reported appropriately
+6. Whether non-significant findings are described carefully
+7. Whether tables and figures are cited properly
+8. Whether there is unnecessary repetition of table data
+9. Whether subgroup or secondary analyses are clearly labeled
+10. Whether the Results support the conclusions
+
+Important restrictions:
+- Do not recalculate statistics.
+- Do not invent missing numerical values.
+- Do not interpret results beyond the data.
+- Do not create new findings.
+
+Output format:
+1. Overall assessment
+2. Main strengths
+3. Major reporting problems
+4. Statistical reporting concerns
+5. Overclaiming risks
+6. Actionable revision checklist</pre></div></div>
+  <div class="slide-task-note">Students run Results audit.</div>
+</section><section class="slide " data-index="22" data-station="5" data-title="Tables and figures: AI can preview communication, not verify truth" data-end="14:05" data-duration="10 min" data-task="Warn students about AI limits in figures and tables.">
+  <div class="time-guide">⏱ Finish by 14:05 · 10 min</div>
+  <div class="kicker">Principle 7</div>
+  <h2>Tables and figures: AI can preview communication, not verify truth</h2>
+  <div class="grid two"><div class="card"><h3>Use AI carefully</h3><p>AI can help check whether captions are self-contained, abbreviations are defined, and figures/tables are readable. It must not be trusted to verify numerical accuracy.</p></div><div class="manual-checklist"><h3>Manual final checks</h3><ul><li>Units and axis labels</li><li>Percentage totals</li><li>Decimal places</li><li>Resolution ≥ 300 dpi if required</li><li>Color accessibility</li><li>Consistency with Results text</li></ul></div></div><div class="callout danger"><strong>Important:</strong> This deck intentionally treats table/figure checking as author responsibility. AI is only a preliminary communication auditor.</div>
+  <div class="slide-task-note">Warn students about AI limits in figures and tables.</div>
+</section><section class="slide " data-index="23" data-station="5" data-title="Tables and figures preliminary communication audit" data-end="14:15" data-duration="10 min" data-task="Students use AI only for communication audit of tables/figures.">
+  <div class="time-guide">⏱ Finish by 14:15 · 10 min</div>
+  <div class="kicker">Prompt 8</div>
+  <h2>Tables and figures preliminary communication audit</h2>
+  <div class="grid two"><div class="card"><h3>Student action</h3><p>Use this only after you understand it is not a final technical check.</p><div class="next-action">Manual edit: verify every number, unit, symbol, and journal requirement yourself.</div></div><div class="copybox"><button class="copy" data-copy="figures">Copy prompt</button><pre class="prompt" id="figures">Act as a preliminary communication auditor for tables and figures.
+
+Important: This is NOT a final technical check. The author must manually verify all numbers, units, percentages, figure resolution, color accessibility, and journal formatting.
+
+Please assess whether the tables and figures:
+1. Are necessary and not redundant
+2. Present the main findings clearly
+3. Are self-contained
+4. Have clear titles and legends
+5. Define all abbreviations
+6. Include units of measurement
+7. Use appropriate decimal places
+8. Avoid excessive data density
+9. Are consistent with the Results text
+10. Are suitable for publication-quality communication
+
+Important restrictions:
+- Do not invent data.
+- Do not change numerical values.
+- Do not create new figures unless asked.
+- Do not claim that the tables/figures are technically correct.
+
+Output format:
+1. Table-by-table feedback
+2. Figure-by-figure feedback
+3. Missing information
+4. Readability concerns
+5. Items that require manual author verification
+6. Priority improvements before submission</pre></div></div>
+  <div class="slide-task-note">Students use AI only for communication audit of tables/figures.</div>
+</section><section class="slide " data-index="24" data-station="6" data-title="Discussion: answer the “So what?” question" data-end="14:25" data-duration="10 min" data-task="Teach Discussion principle.">
+  <div class="time-guide">⏱ Finish by 14:25 · 10 min</div>
+  <div class="kicker">Principle 8</div>
+  <h2>Discussion: answer the “So what?” question</h2>
+  <div class="grid two"><div class="card"><h3>Discussion is interpretation, not repetition</h3><p>A strong Discussion summarizes the principal findings, compares them with prior literature, explains unexpected findings, states limitations, and clarifies contribution <a class="cite" href="https://consensus.app/papers/please-say-it-clearly-a-reflection-on-proper-style-of-cornell/0959a77c92895cc8a15211f315565ade/?utm_source=chatgpt" target="_blank">[1]</a> <a class="cite" href="https://consensus.app/papers/critical-appraisal-of-an-original-research-article-santhanam-ravindran/15fe11a2592f591390aeb97c20629d8a/?utm_source=chatgpt" target="_blank">[2]</a>.</p></div><div class="so-what"><div>What did we find?</div><span>→</span><div>How does it compare?</div><span>→</span><div>What does it mean?</div><span>→</span><div>What are the limits?</div><span>→</span><div>Why now?</div></div></div><div class="principle-bar"><strong>Guardrail:</strong> The Discussion must not claim more than the Results and study design can support.</div>
+  <div class="slide-task-note">Teach Discussion principle.</div>
+</section><section class="slide " data-index="25" data-station="6" data-title="Discussion audit" data-end="14:40" data-duration="15 min" data-task="Students run Discussion audit.">
+  <div class="time-guide">⏱ Finish by 14:40 · 15 min</div>
+  <div class="kicker">Prompt 9</div>
+  <h2>Discussion audit</h2>
+  <div class="grid two"><div><div class="route"><div class="node done"><div class="dot">0</div><div class="label">Prepare</div></div><div class="node done"><div class="dot">1</div><div class="label">Full audit</div></div><div class="node done"><div class="dot">2</div><div class="label">Context</div></div><div class="node done"><div class="dot">3</div><div class="label">Intro</div></div><div class="node done"><div class="dot">4</div><div class="label">Methods</div></div><div class="node done"><div class="dot">5</div><div class="label">Results</div></div><div class="node current"><div class="dot">6</div><div class="label">Discussion</div></div><div class="node "><div class="dot">7</div><div class="label">Final</div></div></div><div class="card"><h3>Student action</h3><p>Open a new chat. Upload the latest full manuscript. Run context summary. Then run Discussion audit.</p><div class="next-action">Manual edit: improve interpretation, limitations, implications, and avoid overclaiming.</div></div></div><div class="copybox"><button class="copy" data-copy="discussion">Copy prompt</button><pre class="prompt" id="discussion">Act as a senior medical journal editor reviewing the Discussion section.
+
+Please evaluate whether the Discussion:
+1. Begins with a concise summary of the main findings
+2. Interprets findings without repeating the Results
+3. Compares findings with previous studies
+4. Explains similarities and differences from prior literature
+5. Addresses unexpected findings
+6. Clearly states strengths and limitations
+7. Explains clinical, public health, scientific, or policy implications
+8. Avoids overclaiming
+9. Answers the “So what?” question
+10. Ends with a conclusion supported by the data
+
+Important restrictions:
+- Do not invent explanations.
+- Do not add unsupported implications.
+- Do not create new citations.
+- Do not exaggerate novelty.
+
+Output format:
+1. Overall assessment
+2. Does the Discussion answer “So what?”
+3. Paragraph-by-paragraph feedback
+4. Overclaiming risks
+5. Missing limitations
+6. Suggestions to strengthen interpretation
+7. Priority revision checklist</pre></div></div>
+  <div class="slide-task-note">Students run Discussion audit.</div>
+</section><section class="slide " data-index="26" data-station="0" data-title="Save your current manuscript version" data-end="14:50" data-duration="10 min" data-task="Break and save-version checkpoint.">
+  <div class="time-guide">⏱ Finish by 14:50 · 10 min</div>
+  <div class="kicker">Catch-up break</div>
+  <h2>Save your current manuscript version</h2>
+  <div class="lunch"><div class="emoji big">☕</div><h2>Catch-up Break</h2><p>Save the latest file before the final readiness phase.</p><div class="file-names"><code>Manuscript_v1_original.docx</code><code>Manuscript_v2_after_overall_audit.docx</code><code>Manuscript_v3_after_IMRaD_revision.docx</code><code>Manuscript_v4_pre_submission_check.docx</code></div></div>
+  <div class="slide-task-note">Break and save-version checkpoint.</div>
+</section><section class="slide " data-index="27" data-station="7" data-title="References: AI must not become a citation machine" data-end="15:00" data-duration="10 min" data-task="Teach reference safety principle.">
+  <div class="time-guide">⏱ Finish by 15:00 · 10 min</div>
+  <div class="kicker">Principle 9</div>
+  <h2>References: AI must not become a citation machine</h2>
+  <div class="grid two"><div class="card"><h3>Why this matters</h3><p>Generative AI can produce fabricated references and citation errors. Ethical-use papers warn that hallucinations and inaccurate references threaten manuscript integrity <a class="cite" href="https://consensus.app/papers/artificial-intelligenceassisted-academic-writing-cheng-calhoun/745e81333e085ad1b5a83d4835ffeb42/?utm_source=chatgpt" target="_blank">[7]</a> <a class="cite" href="https://consensus.app/papers/generative-artificial-intelligence-genai-for-academic-gabay-funa/ddbc9ec2b7cd50bb8e3f82e965fa8eff/?utm_source=chatgpt" target="_blank">[8]</a>.</p></div><div class="card"><h3>Correct workflow</h3><p>Use AI only to flag claims that appear unsupported. Then verify literature manually using databases and a reference manager.</p><p>Publisher policies vary, but transparency and author accountability are central <a class="cite" href="https://consensus.app/papers/publishers-and-journals-instructions-to-authors-on-use-of-ganjavi-eppler/161d1fed7de15766af124a85dcd10533/?utm_source=chatgpt" target="_blank">[5]</a> <a class="cite" href="https://consensus.app/papers/defining-the-boundaries-of-ai-use-in-scientific-writing-a-yoo/795748c1e07555e08f77f468fb0fb930/?utm_source=chatgpt" target="_blank">[6]</a>.</p></div></div><div class="callout danger"><strong>Rule:</strong> Do not ask AI to create references. Do not paste AI-generated citations into your manuscript.</div>
+  <div class="slide-task-note">Teach reference safety principle.</div>
+</section><section class="slide " data-index="28" data-station="7" data-title="Reference-support audit" data-end="15:07" data-duration="7 min" data-task="Students flag unsupported claims, then manually verify references.">
+  <div class="time-guide">⏱ Finish by 15:07 · 7 min</div>
+  <div class="kicker">Prompt 10</div>
+  <h2>Reference-support audit</h2>
+  <div class="grid two"><div class="card"><h3>Student action</h3><p>Use this prompt to find unsupported claims, not to generate citations.</p><div class="next-action">Manual edit: check every citation in Zotero, EndNote, Mendeley, PubMed, Crossref, or the journal website.</div></div><div class="copybox"><button class="copy" data-copy="refs">Copy prompt</button><pre class="prompt" id="refs">Act as a reference-support auditor, not as a citation generator.
+
+Please review the manuscript only to identify where citation support may be weak.
+
+Evaluate:
+1. Claims that appear unsupported
+2. Areas where more recent evidence may be needed
+3. Areas where foundational literature may be missing
+4. Whether the reference style appears inconsistent
+5. Whether any citation appears suspicious and must be manually checked
+
+Important restrictions:
+- Do not invent references.
+- Do not generate fake citations.
+- Do not verify a citation unless you can see the full reference information.
+- If you suggest adding literature, describe the type of evidence needed rather than fabricating a citation.
+- Final reference checking must be done manually using Zotero, EndNote, Mendeley, PubMed, Crossref, or the journal website.
+
+Output format:
+1. Claims that need stronger support
+2. Possible missing categories of literature
+3. Reference style issues
+4. Suspicious items requiring manual verification
+5. Author action checklist</pre></div></div>
+  <div class="slide-task-note">Students flag unsupported claims, then manually verify references.</div>
+</section><section class="slide " data-index="29" data-station="7" data-title="Transparency: disclose AI use and keep human accountability" data-end="15:15" data-duration="8 min" data-task="Teach disclosure principle.">
+  <div class="time-guide">⏱ Finish by 15:15 · 8 min</div>
+  <div class="kicker">Principle 10</div>
+  <h2>Transparency: disclose AI use and keep human accountability</h2>
+  <div class="grid two"><div class="card"><h3>AI disclosure is now part of publication ethics</h3><p>A BMJ bibliometric analysis found that many top journals and publishers have AI policies, but requirements differ substantially across publishers and journals <a class="cite" href="https://consensus.app/papers/publishers-and-journals-instructions-to-authors-on-use-of-ganjavi-eppler/161d1fed7de15766af124a85dcd10533/?utm_source=chatgpt" target="_blank">[5]</a>.</p></div><div class="card"><h3>Human authors remain responsible</h3><p>Editorial policy reviews emphasize that AI tools should not be listed as authors and that authors should disclose tool name, purpose, and scope of AI use where required <a class="cite" href="https://consensus.app/papers/defining-the-boundaries-of-ai-use-in-scientific-writing-a-yoo/795748c1e07555e08f77f468fb0fb930/?utm_source=chatgpt" target="_blank">[6]</a>.</p></div></div><div class="principle-bar"><strong>Use disclosure to build trust:</strong> tool used + purpose + sections affected + human verification.</div>
+  <div class="slide-task-note">Teach disclosure principle.</div>
+</section><section class="slide " data-index="30" data-station="7" data-title="AI-use disclosure draft" data-end="15:20" data-duration="5 min" data-task="Students draft disclosure statement.">
+  <div class="time-guide">⏱ Finish by 15:20 · 5 min</div>
+  <div class="kicker">Prompt 11</div>
+  <h2>AI-use disclosure draft</h2>
+  <div class="grid two"><div class="card"><h3>Student action</h3><p>Draft disclosure after you know exactly how AI was used.</p><p>Check the target journal’s author guidelines before submission.</p></div><div class="copybox"><button class="copy" data-copy="disclosure">Copy prompt</button><pre class="prompt" id="disclosure">Act as a publication ethics advisor.
+
+Based on the AI use described below, help me draft a transparent AI-use disclosure statement.
+
+AI tools used:
+[Insert tools]
+
+Purpose of use:
+[Example: language editing, grammar correction, readability improvement, reviewer-style critique, literature mapping]
+
+Sections affected:
+[Insert sections]
+
+Human verification process:
+[Explain how the authors checked the output]
+
+Please draft:
+1. A short disclosure statement for the manuscript
+2. A cover letter disclosure statement
+3. A more detailed internal documentation note
+
+Important restrictions:
+- Do not hide AI use.
+- Do not imply AI contributed as an author.
+- Emphasize that the authors remain fully responsible for the final content.</pre></div></div>
+  <div class="slide-task-note">Students draft disclosure statement.</div>
+</section><section class="slide " data-index="31" data-station="7" data-title="Final pre-submission readiness check" data-end="15:25" data-duration="5 min" data-task="Students run final readiness check.">
+  <div class="time-guide">⏱ Finish by 15:25 · 5 min</div>
+  <div class="kicker">Prompt 12</div>
+  <h2>Final pre-submission readiness check</h2>
+  <div class="grid two"><div><div class="route"><div class="node done"><div class="dot">0</div><div class="label">Prepare</div></div><div class="node done"><div class="dot">1</div><div class="label">Full audit</div></div><div class="node done"><div class="dot">2</div><div class="label">Context</div></div><div class="node done"><div class="dot">3</div><div class="label">Intro</div></div><div class="node done"><div class="dot">4</div><div class="label">Methods</div></div><div class="node done"><div class="dot">5</div><div class="label">Results</div></div><div class="node done"><div class="dot">6</div><div class="label">Discussion</div></div><div class="node current"><div class="dot">7</div><div class="label">Final</div></div></div><div class="card"><h3>Student action</h3><p>Open a final new chat. Upload the latest full manuscript. Run context prompt. Then run final readiness prompt.</p><div class="next-action">Do not ask AI to rewrite. Ask it to identify remaining risks.</div></div></div><div class="copybox"><button class="copy" data-copy="final">Copy prompt</button><pre class="prompt" id="final">I have revised this manuscript based on previous feedback. Please act as a final pre-submission auditor.
+
+Do not rewrite the manuscript. Do not add new data, new references, or new claims.
+
+Please check:
+1. Whether the manuscript is internally consistent
+2. Whether the Abstract, Introduction, Methods, Results, Discussion, and Conclusion are aligned
+3. Whether any claims are unsupported
+4. Whether there are risks of overclaiming
+5. Whether ethics, funding, conflict of interest, data availability, and AI-use disclosure are complete
+6. Whether the manuscript is ready for submission
+
+Please provide:
+1. Submission readiness score from 1–10
+2. Must-fix issues
+3. Optional improvements
+4. Desk rejection risks
+5. Final recommendation: ready / nearly ready / not ready</pre></div></div>
+  <div class="slide-task-note">Students run final readiness check.</div>
+</section><section class="slide " data-index="32" data-station="7" data-title="What students should have after the workshop" data-end="15:28" data-duration="3 min" data-task="Clarify student deliverables.">
+  <div class="time-guide">⏱ Finish by 15:28 · 3 min</div>
+  <div class="kicker">Final output</div>
+  <h2>What students should have after the workshop</h2>
+  <div class="grid three"><div class="card"><h3>1. Revised manuscript</h3><p>Manually edited in Word with version control.</p></div><div class="card"><h3>2. Revision log</h3><p>Major AI feedback, author decision, and actual revision.</p></div><div class="card"><h3>3. Disclosure draft</h3><p>Tool, purpose, scope, and human verification process.</p></div></div><div class="final-route"><div>Original draft</div><span>→</span><div>AI audit</div><span>→</span><div>Human revision</div><span>→</span><div>Final readiness check</div><span>→</span><div>Supervisor / co-author review</div></div>
+  <div class="slide-task-note">Clarify student deliverables.</div>
+</section><section class="slide " data-index="33" data-station="7" data-title="Stop before submission if you see these" data-end="15:30" data-duration="2 min" data-task="Close the instructional route with safety red flags.">
+  <div class="time-guide">⏱ Finish by 15:30 · 2 min</div>
+  <div class="kicker">Red flags</div>
+  <h2>Stop before submission if you see these</h2>
+  <div class="grid four redcards"><div class="card"><h3>Fake citations</h3><p>Any reference AI suggested but you cannot verify.</p></div><div class="card"><h3>Changed meaning</h3><p>Polished English that changes the scientific claim.</p></div><div class="card"><h3>Overclaiming</h3><p>Conclusions stronger than the data or study design.</p></div><div class="card"><h3>Privacy risk</h3><p>Identifiable patient or confidential data uploaded to public AI.</p></div></div><div class="quote center">When in doubt, slow down and verify manually.</div>
+  <div class="slide-task-note">Close the instructional route with safety red flags.</div>
+</section><section class="slide " data-index="34" data-station="7" data-title="Selected literature used in this deck" data-end="15:30" data-duration="2 min" data-task="Show sources for teaching principles.">
+  <div class="time-guide">⏱ Finish by 15:30 · 2 min</div>
+  <div class="kicker">Evidence base</div>
+  <h2>Selected literature used in this deck</h2>
+  <p class="lead">These references support the manuscript-writing principles, reporting-guideline emphasis, and AI-literacy safeguards embedded in the workshop.</p><ol class="refs"><li><a href="https://consensus.app/papers/please-say-it-clearly-a-reflection-on-proper-style-of-cornell/0959a77c92895cc8a15211f315565ade/?utm_source=chatgpt" target="_blank">Please Say It Clearly: A Reflection on Proper Style of Scientific Reporting</a>. Cornell (2021).</li><li><a href="https://consensus.app/papers/critical-appraisal-of-an-original-research-article-santhanam-ravindran/15fe11a2592f591390aeb97c20629d8a/?utm_source=chatgpt" target="_blank">Critical appraisal of an original research article</a>. Santhanam et al. (2025).</li><li><a href="https://consensus.app/papers/guidelines-for-a-structured-manuscript-statistical-christensen-ranstam/438ceb65ba5953ffa88e77e0cd08283c/?utm_source=chatgpt" target="_blank">Guidelines for a structured manuscript: Statistical methods and reporting in biomedical research journals</a>. Christensen et al. (2023).</li><li><a href="https://consensus.app/papers/reducing-waste-from-incomplete-or-unusable-reports-of-glasziou-altman/ea4fe9940d0051bda81f01eca44da7b8/?utm_source=chatgpt" target="_blank">Reducing waste from incomplete or unusable reports of biomedical research</a>. Glasziou et al. (2014).</li><li><a href="https://consensus.app/papers/publishers-and-journals-instructions-to-authors-on-use-of-ganjavi-eppler/161d1fed7de15766af124a85dcd10533/?utm_source=chatgpt" target="_blank">Publishers’ and journals’ instructions to authors on use of generative AI</a>. Ganjavi et al. (2024).</li><li><a href="https://consensus.app/papers/defining-the-boundaries-of-ai-use-in-scientific-writing-a-yoo/795748c1e07555e08f77f468fb0fb930/?utm_source=chatgpt" target="_blank">Defining the Boundaries of AI Use in Scientific Writing</a>. Yoo (2025).</li><li><a href="https://consensus.app/papers/artificial-intelligenceassisted-academic-writing-cheng-calhoun/745e81333e085ad1b5a83d4835ffeb42/?utm_source=chatgpt" target="_blank">Artificial intelligence-assisted academic writing: recommendations for ethical use</a>. Cheng et al. (2025).</li><li><a href="https://consensus.app/papers/generative-artificial-intelligence-genai-for-academic-gabay-funa/ddbc9ec2b7cd50bb8e3f82e965fa8eff/?utm_source=chatgpt" target="_blank">Generative AI for Academic Writing in Higher Education</a>. Gabay et al. (2026).</li><li><a href="https://consensus.app/papers/generative-artificial-intelligence-in-academic-writing-chanpradit/38ae71e02c3752a9af42826eb2013266/?utm_source=chatgpt" target="_blank">Generative artificial intelligence in academic writing in higher education</a>. Chanpradit (2025).</li></ol><div class="small">Also based on the original 3-hour Step-by-Step AI-Assisted Manuscript Upgrading workshop plan by Popchai Ngamskulrungroj, PhD, MD.</div>
+  <div class="slide-task-note">Show sources for teaching principles.</div>
+</section><section class="slide title-slide" data-index="35" data-station="7" data-title="Keep the route, not just the prompts" data-end="15:30" data-duration="1 min" data-task="End with the core message.">
+  <div class="time-guide">⏱ Finish by 15:30 · 1 min</div>
+  <div class="kicker">Closing</div>
+  <h2>Keep the route, not just the prompts</h2>
+  <div class="closing"><h1>AI does not make the paper trustworthy.</h1><h2>Human judgment does.</h2><p>Use the prompts as navigation. Use your expertise as the driver.</p><button class="btn" onclick="goTo(0)">Restart deck</button></div>
+  <div class="slide-task-note">End with the core message.</div>
+</section>
+<div class="nav"><button class="secondary" id="prevBtn">← Previous</button><div class="counter" id="counter">1 / 36</div><button id="nextBtn">Next →</button></div>
+<div class="copied" id="copied">Prompt copied</div>
+</div>
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+let idx=0;let audioCtx=null;let musicNodes=[];let musicOn=false;
+function show(i){idx=Math.max(0,Math.min(slides.length-1,i));slides.forEach((s,j)=>s.classList.toggle('active',j===idx));document.getElementById('counter').textContent=(idx+1)+' / '+slides.length+' · '+slides[idx].dataset.end;document.getElementById('progress').style.width=((idx)/(slides.length-1)*100)+'%';}
+function goTo(i){show(i)}
+document.getElementById('prevBtn').onclick=()=>show(idx-1);document.getElementById('nextBtn').onclick=()=>show(idx+1);document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')show(idx+1);if(e.key==='ArrowLeft')show(idx-1);if(e.key==='Home')show(0);if(e.key==='End')show(slides.length-1);});
+document.getElementById('mapBtn').onclick=()=>show(3);
+document.querySelectorAll('.copy').forEach(btn=>btn.addEventListener('click',async()=>{const id=btn.dataset.copy;const text=document.getElementById(id).innerText;try{await navigator.clipboard.writeText(text)}catch(e){const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();}const c=document.getElementById('copied');c.classList.add('show');setTimeout(()=>c.classList.remove('show'),1300);}));
+function startMusic(){audioCtx=new (window.AudioContext||window.webkitAudioContext)();const gain=audioCtx.createGain();gain.gain.value=0.035;gain.connect(audioCtx.destination);const freqs=[196,246.94,329.63];freqs.forEach((f,k)=>{const osc=audioCtx.createOscillator();osc.type='sine';osc.frequency.value=f;const g=audioCtx.createGain();g.gain.value=0.018;osc.connect(g);g.connect(gain);osc.start();musicNodes.push(osc,g);});const lfo=audioCtx.createOscillator();const lfoGain=audioCtx.createGain();lfo.frequency.value=.08;lfoGain.gain.value=.012;lfo.connect(lfoGain);lfoGain.connect(gain.gain);lfo.start();musicNodes.push(lfo,lfoGain,gain);}
+function stopMusic(){musicNodes.forEach(n=>{try{if(n.stop)n.stop(); if(n.disconnect)n.disconnect();}catch(e){}});musicNodes=[];if(audioCtx){audioCtx.close();audioCtx=null;}}
+document.getElementById('musicBtn').onclick=()=>{musicOn=!musicOn;document.body.classList.toggle('music-on',musicOn);if(musicOn)startMusic();else stopMusic();};
+show(0);
+</script>
+</body>
+</html>

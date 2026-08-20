@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+
+<html lang="th">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>AI-Driven Research Excellence | Workshop Presentation</title>
+<style>
+    :root{
+      --bg:#f5f7fb;
+      --ink:#182235;
+      --muted:#5d6b82;
+      --primary:#164b8f;
+      --primary-2:#0f6e8c;
+      --accent:#f2b705;
+      --lecture:#174ea6;
+      --hands:#0b7a53;
+      --prompt:#8a3ffc;
+      --break:#8a5a12;
+      --danger:#b42318;
+      --card:#ffffff;
+      --line:#d9e2ef;
+      --soft:#eaf2ff;
+      --green-soft:#e9f7f1;
+      --purple-soft:#f2ecff;
+      --yellow-soft:#fff7d8;
+      --red-soft:#fff1f0;
+      --shadow:0 16px 40px rgba(24,34,53,.14);
+      --radius:24px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%;font-family:"Noto Sans Thai","Sarabun","Segoe UI",Tahoma,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+    body{overflow:hidden}
+    .deck{height:100vh;width:100vw;display:grid;place-items:center;padding:24px;background:
+      radial-gradient(circle at 8% 10%, rgba(22,75,143,.12), transparent 32%),
+      radial-gradient(circle at 92% 88%, rgba(15,110,140,.14), transparent 34%), var(--bg)}
+    .slide{display:none;position:relative;width:min(94vw,1422px);height:min(88vh,800px);aspect-ratio:16/9;background:linear-gradient(180deg,#fff 0%,#fbfdff 100%);border-radius:var(--radius);box-shadow:var(--shadow);padding:54px 64px 56px;overflow:hidden;border:1px solid rgba(217,226,239,.9)}
+    .slide.active{display:flex;flex-direction:column;animation:fade .25s ease-out}
+    @keyframes fade{from{opacity:.25;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    .slide:before{content:"";position:absolute;inset:0 0 auto 0;height:10px;background:linear-gradient(90deg,var(--primary),var(--primary-2),var(--accent))}
+    .slide.title:after{content:"";position:absolute;right:-120px;bottom:-140px;width:520px;height:520px;background:radial-gradient(circle,rgba(22,75,143,.18),rgba(15,110,140,.08) 46%,transparent 70%);border-radius:50%}
+    .kicker{letter-spacing:.02em;color:var(--primary);font-weight:800;text-transform:uppercase;font-size:20px;margin-bottom:10px}
+    h1{font-size:58px;line-height:1.12;margin:0 0 22px;font-weight:900;letter-spacing:-.025em;color:#10233f}
+    h2{font-size:43px;line-height:1.16;margin:0 0 24px;font-weight:900;letter-spacing:-.018em;color:#10233f}
+    h3{font-size:30px;line-height:1.25;margin:0 0 12px;font-weight:850;color:#10233f}
+    p{font-size:24px;line-height:1.55;margin:0 0 16px;color:var(--ink)}
+    .lead{font-size:30px;line-height:1.45;color:#26384f;max-width:1060px}
+    .muted{color:var(--muted)}
+    .small{font-size:18px;line-height:1.45}.tiny{font-size:15px;line-height:1.35}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:24px}.row-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.row-4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.row-5{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}.wide-left{display:grid;grid-template-columns:1.3fr .7fr;gap:24px}.wide-right{display:grid;grid-template-columns:.8fr 1.2fr;gap:24px}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px 24px;box-shadow:0 10px 24px rgba(24,34,53,.06)}
+    .card.soft{background:var(--soft)}.card.green{background:var(--green-soft)}.card.purple{background:var(--purple-soft)}.card.yellow{background:var(--yellow-soft)}.card.red{background:var(--red-soft)}
+    .card h3{font-size:25px}.card p,.card li{font-size:20px;line-height:1.48}.card .big{font-size:36px;font-weight:900;color:var(--primary)}
+    ul,ol{margin:0 0 0 1.2em;padding:0}li{font-size:23px;line-height:1.48;margin:8px 0}.tight li{margin:4px 0}.large li{font-size:26px}
+    .badge-row{display:flex;align-items:center;gap:10px;margin-bottom:20px;flex-wrap:wrap}.badge{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:8px 14px;font-weight:800;font-size:15px;letter-spacing:.01em}.badge.lecture{background:#eaf2ff;color:var(--lecture)}.badge.hands{background:#e9f7f1;color:var(--hands)}.badge.prompt{background:#f2ecff;color:var(--prompt)}.badge.break{background:#fff7d8;color:var(--break)}.badge.qc{background:#fff1f0;color:var(--danger)}.badge.end{background:#eef2f7;color:#344054}.badge.output{background:#e8faf7;color:#08756f}
+    .footer{position:absolute;left:64px;right:64px;bottom:24px;display:flex;justify-content:space-between;align-items:center;color:#697586;font-size:15px;border-top:1px solid #edf1f7;padding-top:12px}.progress-text{font-weight:800;color:#344054}.controls{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:20;background:rgba(255,255,255,.86);border:1px solid rgba(217,226,239,.9);border-radius:999px;padding:8px 12px;box-shadow:0 10px 30px rgba(24,34,53,.14);backdrop-filter:blur(10px)}button{border:0;border-radius:999px;padding:10px 16px;font-weight:800;background:#10233f;color:#fff;cursor:pointer;font-family:inherit}button.secondary{background:#eef2f7;color:#10233f}.counter{align-self:center;color:#344054;font-weight:900;font-size:14px;padding:0 8px}.bar{position:fixed;top:0;left:0;height:5px;background:linear-gradient(90deg,var(--primary),var(--accent));width:0%;z-index:40;transition:width .2s}
+    .timebox{display:grid;grid-template-columns:110px 1fr;gap:12px;align-items:start;margin:8px 0}.timebox .time{font-size:18px;font-weight:900;color:var(--primary);background:#eef6ff;padding:8px 10px;border-radius:12px;text-align:center}.timebox .desc{font-size:20px;line-height:1.45;color:#26384f}
+    .table{width:100%;border-collapse:collapse;font-size:18px;background:#fff;border-radius:16px;overflow:hidden;border:1px solid var(--line)}.table th{background:#10233f;color:#fff;text-align:left;padding:12px 14px;font-size:16px}.table td{border-top:1px solid var(--line);padding:11px 14px;vertical-align:top}.table td:first-child{font-weight:800;color:var(--primary);white-space:nowrap}.table .type{font-weight:900}
+    .promptbox{background:#101828;color:#f8fafc;border-radius:18px;padding:20px 22px;font-family:"Segoe UI",Tahoma,Arial,sans-serif;font-size:18px;line-height:1.55;white-space:pre-wrap;max-height:440px;overflow:auto;border:1px solid #344054}.promptbox strong{color:#ffd166}.prompt-actions{display:flex;gap:10px;margin-top:12px}.copy-btn{background:var(--prompt);font-size:14px;padding:9px 14px}.copy-status{font-size:15px;color:#667085;align-self:center;font-weight:700}
+    .worksheet{border:2px dashed #9bb6d9;border-radius:20px;background:#fbfdff;padding:18px 20px}.field{border:1px solid #cbd5e1;background:#fff;border-radius:14px;min-height:64px;margin-top:8px;padding:10px;color:#667085;font-size:16px}.field.big{min-height:120px}.field.line{min-height:42px}.label{font-size:17px;font-weight:900;color:#10233f}.example{background:#fff8e6;border-left:5px solid var(--accent);padding:12px 14px;border-radius:14px;font-size:18px;color:#344054;line-height:1.45}.pill{display:inline-block;border-radius:999px;padding:6px 11px;background:#eef2f7;font-weight:800;color:#344054;font-size:14px;margin:0 5px 7px 0}.callout{border-left:7px solid var(--primary);background:#f4f8ff;border-radius:18px;padding:18px 22px}.callout.danger{border-left-color:var(--danger);background:#fff7f7}.callout.green{border-left-color:var(--hands);background:#f2fbf7}.callout p{font-size:22px}.number{width:48px;height:48px;border-radius:14px;background:#10233f;color:#fff;display:grid;place-items:center;font-weight:900;font-size:24px;flex:none}.step{display:flex;gap:14px;align-items:flex-start;margin-bottom:15px}.step p{font-size:22px;margin:0}.diagram{position:relative;height:390px}.circle{position:absolute;border-radius:50%;display:grid;place-items:center;text-align:center;font-weight:900;font-size:24px;line-height:1.2;border:4px solid #fff;box-shadow:0 14px 28px rgba(24,34,53,.12);padding:26px}.c1{left:170px;top:40px;width:230px;height:230px;background:#eaf2ff;color:var(--lecture)}.c2{right:170px;top:40px;width:230px;height:230px;background:#e9f7f1;color:var(--hands)}.c3{left:250px;bottom:10px;width:230px;height:230px;background:#f2ecff;color:var(--prompt)}.c4{right:250px;bottom:10px;width:230px;height:230px;background:#fff7d8;color:var(--break)}.center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:240px;height:150px;border-radius:28px;background:#10233f;color:#fff;display:grid;place-items:center;text-align:center;font-size:26px;font-weight:900;line-height:1.25;box-shadow:0 18px 44px rgba(16,35,63,.28);padding:18px}.title-meta{display:grid;grid-template-columns:1fr .95fr;gap:30px;margin-top:auto;align-items:end}.meta-card{background:rgba(255,255,255,.84);border:1px solid var(--line);border-radius:22px;padding:24px;box-shadow:0 12px 30px rgba(24,34,53,.08)}.meta-card p{font-size:22px;margin:8px 0}.big-quote{font-size:40px;font-weight:900;line-height:1.3;color:#10233f}.divider{height:1px;background:var(--line);margin:16px 0}.speaker-note{font-size:17px;color:#5d6b82;background:#f8fafc;border:1px solid #e5eaf2;border-radius:15px;padding:12px 14px;margin-top:auto}.matrix{display:grid;grid-template-columns:1fr 1fr;gap:14px}.matrix .cell{border-radius:18px;padding:18px;border:1px solid var(--line);background:#fff}.matrix h3{font-size:23px}.matrix p{font-size:19px}.score{font-size:44px;font-weight:950;color:var(--primary);line-height:1}.traffic{display:flex;gap:12px}.dot{width:20px;height:20px;border-radius:50%;background:#d0d5dd}.dot.green{background:#12b76a}.dot.yellow{background:#fdb022}.dot.red{background:#f04438}.slide.section{background:linear-gradient(135deg,#10233f 0%,#164b8f 55%,#0f6e8c 100%);color:#fff}.slide.section:before{background:rgba(255,255,255,.35)}.slide.section h1,.slide.section h2,.slide.section p,.slide.section .kicker{color:#fff}.slide.section .badge{background:rgba(255,255,255,.18);color:#fff}.slide.section .footer{color:rgba(255,255,255,.78);border-top-color:rgba(255,255,255,.24)}
+    @media(max-width:900px){.slide{padding:36px 34px 50px}.row,.row-3,.row-4,.wide-left,.wide-right{grid-template-columns:1fr}h1{font-size:40px}h2{font-size:32px}.lead{font-size:23px}.card p,.card li,li,p{font-size:19px}.footer{left:34px;right:34px}.controls{bottom:8px}.diagram{height:360px;transform:scale(.75);transform-origin:top left;width:133%}}
+    @media print{body{overflow:visible;background:#fff}.deck{display:block;height:auto;width:auto;padding:0;background:#fff}.slide{display:flex!important;page-break-after:always;width:100vw;height:56.25vw;max-height:100vh;box-shadow:none;border-radius:0;border:none}.controls,.bar{display:none}.footer{bottom:18px}}
+  </style>
+</head>
+<body>
+<div class="bar" id="bar"></div>
+<div class="deck" id="deck">
+<section class="slide active title" data-title="Title">
+<div class="badge-row"><span class="badge lecture">Opening</span><span class="badge end">ควรจบก่อน 09.00 น.</span></div>
+<div class="kicker">One-day workshop | Mahidol University Kanchanaburi Campus</div>
+<h1>AI-Driven Research Excellence</h1>
+<p class="lead">ยกระดับการวิจัยสู่ความเป็นเลิศด้วยพลัง AI</p>
+<div class="title-meta">
+<div class="meta-card">
+<p><strong>วันจันทร์ที่ 29 มิถุนายน พ.ศ. 2569</strong></p>
+<p>เวลา 08.30–16.30 น.<br/><span class="small muted">ลงทะเบียน 08.30–09.00 น. | เริ่มเนื้อหา 09.00 น.</span></p>
+<p>ห้องประชุมนิลกาญจน์ ชั้น 3 อาคารเรียนรวม<br/>วิทยาเขตกาญจนบุรี มหาวิทยาลัยมหิดล</p>
+</div>
+<div class="meta-card">
+<p><strong>ผลลัพธ์หลักของวันนี้</strong></p>
+<p>ผู้เข้าร่วมจะได้ <strong>Proposal Concept Package</strong> ที่พร้อมนำไปพัฒนาต่อเป็นข้อเสนอโครงการวิจัยฉบับเต็ม</p>
+</div>
+</div>
+<div class="footer"><span>AI-Driven Research Excellence</span><span class="progress-text">Slide 1</span></div>
+</section>
+<section class="slide" data-title="AI basics opener">
+<div class="badge-row"><span class="badge lecture">Lecture</span><span class="badge end">ควรจบก่อน 09.08 น.</span></div>
+<h2>All about AI: ตั้งหลักให้ตรงกันก่อนเริ่ม</h2>
+<div class="wide-left">
+<div class="callout">
+<p class="big-quote">AI ไม่ใช่ผู้เชี่ยวชาญที่รู้ทุกอย่าง แต่เป็นระบบช่วยประมวลภาษา เหตุผล และรูปแบบจากข้อมูลที่เราให้</p>
+</div>
+<div class="card soft">
+<h3>3 คำที่ต้องแยกให้ชัด</h3>
+<ul>
+<li><strong>Generative AI</strong>: สร้างข้อความ ภาพ โค้ด หรือโครงร่าง</li>
+<li><strong>AI Search</strong>: ค้นและสรุปจากแหล่งข้อมูลที่ตรวจสอบได้</li>
+<li><strong>Analytical AI</strong>: วิเคราะห์ข้อมูล ตาราง แนวโน้ม หรือ pattern</li>
+</ul>
+</div>
+</div>
+<div class="speaker-note">เปิดด้วยภาพรวมง่าย ๆ ว่า AI เป็นเครื่องมือช่วยคิด ไม่ใช่แหล่งความจริงสุดท้าย</div>
+<div class="footer"><span>AI basics</span><span class="progress-text">Slide 2</span></div>
+</section>
+<section class="slide" data-title="AI how it works">
+<div class="badge-row"><span class="badge lecture">Lecture</span><span class="badge end">ควรจบก่อน 09.15 น.</span></div>
+<h2>AI ตอบดีหรือไม่ดี ขึ้นกับ 4 อย่าง</h2>
+<div class="row-4">
+<div class="card soft"><h3>Context</h3><p>บอกบริบทงานวิจัย ผู้เรียน แหล่งทุน และเป้าหมาย</p></div>
+<div class="card green"><h3>Evidence</h3><p>ใส่ข้อมูลจริงจาก paper, TOR, profile, dataset หรือ policy</p></div>
+<div class="card purple"><h3>Instruction</h3><p>กำหนดบทบาท งาน เงื่อนไข และผลลัพธ์ที่ต้องการ</p></div>
+<div class="card yellow"><h3>Constraint</h3><p>ห้ามเดา ห้ามแต่ง citation ห้ามอ้างเกินหลักฐาน</p></div>
+</div>
+<div class="callout" style="margin-top:24px"><p>Prompt ที่ดีไม่ใช่ prompt ที่ยาวที่สุด แต่คือ prompt ที่ทำให้ AI รู้ว่า “ต้องใช้ข้อมูลอะไร และห้ามทำอะไร”</p></div>
+<div class="footer"><span>Prompt fundamentals</span><span class="progress-text">Slide 3</span></div>
+</section>
+<section class="slide" data-title="AI for research workflow">
+<div class="badge-row"><span class="badge lecture">Lecture</span><span class="badge end">ควรจบก่อน 09.22 น.</span></div>
+<h2>AI ช่วยงานวิจัยตรงไหนได้บ้าง</h2>
+<div class="row-5">
+<div class="card soft"><div class="big">1</div><h3>Explore</h3><p>สำรวจหัวข้อ แนวโน้ม และคำถามตั้งต้น</p></div>
+<div class="card green"><div class="big">2</div><h3>Synthesize</h3><p>สรุป literature, gap และ policy need</p></div>
+<div class="card purple"><div class="big">3</div><h3>Design</h3><p>ช่วยคิด aims, approach, risk และ collaborator gap</p></div>
+<div class="card yellow"><div class="big">4</div><h3>Critique</h3><p>จำลอง reviewer เพื่อจับ logic flaw</p></div>
+<div class="card red"><div class="big">5</div><h3>Communicate</h3><p>ช่วยเรียบเรียง abstract, lay summary และ pitch</p></div>
+</div>
+<div class="speaker-note">ย้ำว่า workshop วันนี้จะใช้ AI ในบทบาท Explore → Synthesize → Design → Critique ไม่ใช่ให้เขียนแทนทั้งหมด</div>
+<div class="footer"><span>AI in research workflow</span><span class="progress-text">Slide 4</span></div>
+</section>
+<section class="slide" data-title="AI risks and rules">
+<div class="badge-row"><span class="badge lecture">Lecture</span><span class="badge qc">Guardrails</span><span class="badge end">ควรจบก่อน 09.30 น.</span></div>
+<h2>ความเสี่ยงหลักของ AI ในงานวิจัย</h2>
+<div class="row">
+<div class="card red">
+<h3>ความเสี่ยงที่เจอบ่อย</h3>
+<ul class="large">
+<li>แต่ง citation หรือสถิติที่ไม่มีจริง</li>
+<li>สรุป literature แบบมั่นใจเกินหลักฐาน</li>
+<li>เสนอ method ที่ทีมทำไม่ได้จริง</li>
+<li>ขยาย impact จนเกินความเป็นไปได้</li>
+</ul>
+</div>
+<div class="card green">
+<h3>กติกาวันนี้</h3>
+<ul class="large">
+<li>ทุก prompt ต้องมี input จาก worksheet</li>
+<li>ให้ AI แยก Fact / Interpretation / Gap</li>
+<li>ให้ AI บอกเมื่อข้อมูลไม่เพียงพอ</li>
+<li>ใช้ AI เป็น reviewer ก่อนใช้เป็น writer</li>
+</ul>
+</div>
+</div>
+<div class="footer"><span>Responsible AI for research</span><span class="progress-text">Slide 5</span></div>
+</section>
+
+<section class="slide" data-title="Opening framing">
+<div class="badge-row"><span class="badge lecture">Lecture</span><span class="badge end">ควรจบก่อน 09.34 น.</span></div>
+<h2>วันนี้ไม่ได้มาเรียน “ให้ AI เขียนแทน”</h2>
+<div class="wide-left">
+<div class="callout">
+<p class="big-quote">เป้าหมายคือใช้ AI ช่วยคิดอย่างมีหลักฐาน ตรวจตรรกะ และลด blind spot ก่อนเขียน proposal จริง</p>
+</div>
+<div class="card red">
+<h3>สิ่งที่ต้องเลี่ยง</h3>
+<ul>
+<li>เริ่มด้วยคำสั่ง “ช่วยเขียน proposal ให้หน่อย”</li>
+<li>ไม่มีข้อมูลทีม ไม่มีช่องว่าง ไม่มี funder need</li>
+<li>ให้ AI สร้าง citation หรือข้อมูลนโยบายเอง</li>
+</ul>
+</div>
+</div>
+<div class="speaker-note">พูดสั้น ๆ ว่า AI ที่ดีต้องทำงานบน input ที่ดี วันนี้จึงออกแบบให้มี worksheet คุมคุณภาพก่อน prompt ทุกครั้ง</div>
+<div class="footer"><span>Core message</span><span class="progress-text">Slide 6</span></div>
+</section>
+<section class="slide" data-title="Outcome package">
+<div class="badge-row"><span class="badge lecture">Lecture</span><span class="badge output">Output-oriented</span><span class="badge end">ควรจบก่อน 09.38 น.</span></div>
+<h2>Output: Proposal Concept Package</h2>
+<div class="row-5">
+<div class="card soft"><div class="big">1</div><h3>Research Fit Canvas</h3><p>ตรงคน / ตรงโลก / ตรงความต้องการ / ตรงวิธี</p></div>
+<div class="card green"><div class="big">2</div><h3>Research Questions</h3><p>คำถามวิจัย 3–5 ข้อที่ trace back ได้</p></div>
+<div class="card purple"><div class="big">3</div><h3>Research Approach</h3><p>แนวทางวิจัยแบบ phase พร้อมข้อจำกัด</p></div>
+<div class="card yellow"><div class="big">4</div><h3>Specific Aims</h3><p>วัตถุประสงค์ที่ทดสอบและวัดผลได้</p></div>
+<div class="card red"><div class="big">5</div><h3>Reviewer QC</h3><p>รายการจุดอ่อนที่ต้องแก้ก่อนเขียนฉบับเต็ม</p></div>
+</div>
+<div class="speaker-note">ย้ำว่าผู้เข้าร่วมไม่จำเป็นต้องได้ full proposal ในห้อง แต่ต้องได้ package ที่นำกลับไปเขียนต่อได้จริง</div>
+<div class="footer"><span>Workshop deliverables</span><span class="progress-text">Slide 7</span></div>
+</section>
+<section class="slide" data-title="Agenda">
+<div class="badge-row"><span class="badge lecture">Lecture</span><span class="badge end">ควรจบก่อน 09.42 น.</span></div>
+<h2>เส้นทางการเรียนรู้ทั้งวัน</h2>
+<table class="table">
+<thead><tr><th>เวลา</th><th>ช่วง</th><th>รูปแบบ</th><th>ผลลัพธ์</th></tr></thead>
+<tbody><tr><td>08.30–09.00</td><td>ลงทะเบียน</td><td>Arrival</td><td>เตรียมเครื่องมือและบัญชี AI</td></tr><tr><td>09.00–09.30</td><td>All about AI</td><td>Lecture</td><td>เข้าใจ AI เบื้องต้น บทบาท ข้อจำกัด และกติกาการใช้</td></tr><tr><td>09.30–09.55</td><td>Workshop Setup</td><td>Lecture + Hands-on</td><td>เข้าใจ output และเลือกปัญหาวิจัยตั้งต้น</td></tr><tr><td>09.55–10.20</td><td>Fit 1: Expertise</td><td>Hands-on + Prompt</td><td>Expertise Fingerprint</td></tr><tr><td>10.35–12.00</td><td>Fit 2–3: Trend, Demand, Gap</td><td>Hands-on + Prompt</td><td>Research Question Candidates</td></tr><tr><td>13.00–14.35</td><td>Fit 4: Approach &amp; Aims</td><td>Hands-on + Prompt</td><td>Research Approach + Specific Aims</td></tr><tr><td>14.50–16.20</td><td>Concept Package &amp; Reviewer QC</td><td>Prompt Lab + Revision</td><td>Concept Package ที่ผ่านการ critique</td></tr><tr><td>16.20–16.30</td><td>Wrap-up</td><td>Reflection</td><td>Next-step plan</td></tr></tbody>
+</table>
+<div class="footer"><span>Timeboxed agenda</span><span class="progress-text">Slide 8</span></div>
+</section>
+<section class="slide section" data-title="Module 0">
+<div class="badge-row"><span class="badge">Module 0</span><span class="badge">09.42–09.55 น.</span></div>
+<h1>เริ่ม Workshop: จาก AI Awareness สู่ Proposal Concept</h1>
+<p class="lead">หลังเข้าใจ AI เบื้องต้น เราจะเริ่มใช้ worksheet เพื่อคุมคุณภาพ input ก่อนให้ AI ช่วยคิด</p>
+<div class="footer"><span>Orientation</span><span class="progress-text">Slide 9</span></div>
+</section>
+<section class="slide" data-title="The 4 Fits">
+<div class="badge-row"><span class="badge lecture">Lecture</span><span class="badge end">ควรจบก่อน 09.48 น.</span></div>
+<h2>กรอบคิดหลัก: 4 Fits</h2>
+<div class="diagram">
+<div class="circle c1">ตรงคน<br/><span class="small">Expertise Fit</span></div>
+<div class="circle c2">ตรงโลก<br/><span class="small">Trend Fit</span></div>
+<div class="circle c3">ตรงความต้องการ<br/><span class="small">Demand &amp; Gap Fit</span></div>
+<div class="circle c4">ตรงวิธี<br/><span class="small">Method Fit</span></div>
+<div class="center">Proposal<br/>Concept Package</div>
+</div>
+<div class="footer"><span>4 Fits framework</span><span class="progress-text">Slide 10</span></div>
+</section>
+<section class="slide" data-title="Input discipline">
+<div class="badge-row"><span class="badge lecture">Lecture</span><span class="badge qc">Guardrails</span><span class="badge end">ควรจบก่อน 09.52 น.</span></div>
+<h2>กติกาสำคัญ: Worksheet ก่อน Prompt</h2>
+<div class="row">
+<div class="card green">
+<h3>AI ควรทำหน้าที่</h3>
+<ul class="large">
+<li>สังเคราะห์ข้อมูลที่เราให้</li>
+<li>ตรวจความเชื่อมโยงของเหตุผล</li>
+<li>ชี้จุดอ่อนและคำถามที่ยังตอบไม่ได้</li>
+</ul>
+</div>
+<div class="card red">
+<h3>AI ไม่ควรทำหน้าที่</h3>
+<ul class="large">
+<li>เดาหลักฐานที่ไม่มี</li>
+<li>แต่ง citation หรือสถิติ</li>
+<li>สร้างความเชี่ยวชาญที่ทีมไม่มี</li>
+</ul>
+</div>
+</div>
+<div class="callout danger" style="margin-top:20px"><p><strong>หลักปฏิบัติ:</strong> ถ้าข้อมูลไม่พอ ให้ AI บอกว่า “ข้อมูลไม่เพียงพอ” ไม่ใช่ให้ AI ฝืนสร้างคำตอบ</p></div>
+<div class="footer"><span>Scientific guardrails</span><span class="progress-text">Slide 11</span></div>
+</section>
+<section class="slide" data-title="Seed problem worksheet">
+<div class="badge-row"><span class="badge hands">Hands-on</span><span class="badge end">ควรจบก่อน 09.55 น.</span></div>
+<h2>Worksheet 0: เลือกปัญหาวิจัยตั้งต้น</h2>
+<div class="worksheet">
+<div class="row">
+<div><div class="label">1) ปัญหาที่อยากแก้คืออะไร?</div><div class="field big">เขียนเป็นภาษาธรรมดา 2–3 ประโยค</div></div>
+<div><div class="label">2) ใครได้รับผลกระทบ?</div><div class="field big">ระบุกลุ่มเป้าหมาย ผู้ป่วย ชุมชน องค์กร หรือระบบ</div></div>
+</div>
+<div class="row" style="margin-top:14px">
+<div><div class="label">3) ทำไมเรื่องนี้ควรทำตอนนี้?</div><div class="field">เชื่อมกับสถานการณ์ แนวโน้ม นโยบาย หรือช่องว่างปัจจุบัน</div></div>
+<div><div class="label">4) ทีมเรามีฐานความเชี่ยวชาญอะไรอยู่แล้ว?</div><div class="field">ผลงานเดิม เครื่องมือ ข้อมูล เครือข่าย ประสบการณ์</div></div>
+</div>
+</div>
+<div class="speaker-note">ให้ผู้เข้าร่วมเริ่มจากหัวข้อจริงของตัวเอง ถ้ายังไม่มี ให้เลือกปัญหาที่ใกล้งานประจำหรือพันธกิจของหน่วยงานมากที่สุด</div>
+<div class="footer"><span>Input worksheet</span><span class="progress-text">Slide 12</span></div>
+</section>
+<section class="slide section" data-title="Module 1 Expertise">
+<div class="badge-row"><span class="badge">Module 1</span><span class="badge">09.55–10.20 น.</span></div>
+<h1>Fit 1: ตรงคน</h1>
+<p class="lead">ข้อเสนอโครงการที่ดีต้องเริ่มจากศักยภาพที่มีอยู่จริง ไม่ใช่ภาพฝันที่ทีมยังทำไม่ได้</p>
+<div class="footer"><span>Expertise Fit</span><span class="progress-text">Slide 13</span></div>
+</section>
+<section class="slide" data-title="Expertise fit lecture">
+<div class="badge-row"><span class="badge lecture">Lecture</span><span class="badge end">ควรจบก่อน 10.02 น.</span></div>
+<h2>Expertise Fingerprint คืออะไร</h2>
+<div class="row-4">
+<div class="card soft"><h3>ผลงานเดิม</h3><p>Publications, projects, outputs, datasets, tools</p></div>
+<div class="card green"><h3>ทักษะทีม</h3><p>Method, technology, domain expertise, statistics</p></div>
+<div class="card purple"><h3>สภาพแวดล้อม</h3><p>Infrastructure, equipment, clinical/community access</p></div>
+<div class="card yellow"><h3>เครือข่าย</h3><p>Collaborators, field sites, users, policy partners</p></div>
+</div>
+<div class="callout" style="margin-top:24px"><p>คำถามหลัก: “ทีมนี้มีหลักฐานอะไรที่ทำให้ reviewer เชื่อว่าเราทำเรื่องนี้ได้จริง?”</p></div>
+<div class="footer"><span>Expertise evidence</span><span class="progress-text">Slide 14</span></div>
+</section>
+<section class="slide" data-title="Expertise worksheet">
+<div class="badge-row"><span class="badge hands">Hands-on</span><span class="badge end">ควรจบก่อน 10.12 น.</span></div>
+<h2>Worksheet 1: Expertise Fingerprint</h2>
+<div class="row">
+<div class="worksheet">
+<div class="label">A. ความเชี่ยวชาญหลักของทีม</div><div class="field big">ระบุ 3–5 ประเด็น พร้อมหลักฐานประกอบ</div>
+<div class="label" style="margin-top:12px">B. ข้อมูล / เครื่องมือ / platform ที่มี</div><div class="field">เช่น cohort, lab, dashboard, portal, community network</div>
+<div class="label" style="margin-top:12px">C. ผลงานที่ใช้ยืนยัน credibility</div><div class="field">paper, project, service, implementation, policy use</div>
+</div>
+<div class="card yellow">
+<h3>ตัวอย่างรูปแบบคำตอบ</h3>
+<div class="example">ทีมมีประสบการณ์ด้าน data analytics เพื่อบริหารงานวิจัย มีระบบข้อมูลภายใน และเคยพัฒนา dashboard / AI tool ที่ใช้สนับสนุนการตัดสินใจเชิงยุทธศาสตร์</div>
+<div class="divider"></div>
+<p class="small"><strong>ข้อควรระวัง:</strong> อย่าเขียนความเชี่ยวชาญแบบกว้าง เช่น “AI” หรือ “วิจัยสุขภาพ” ให้ระบุสิ่งที่ทำได้จริงและตรวจสอบได้</p>
+</div>
+</div>
+<div class="footer"><span>Worksheet 1</span><span class="progress-text">Slide 15</span></div>
+</section>
+<section class="slide" data-title="Prompt expertise">
+<div class="badge-row"><span class="badge prompt">Prompt Lab</span><span class="badge end">ควรจบก่อน 10.20 น.</span></div>
+<h2>Prompt 1: สรุป Expertise Fingerprint</h2>
+<div class="promptbox" id="p1">บทบาท: ทำหน้าที่เป็นผู้ประเมินทุนวิจัยที่พิจารณาศักยภาพของทีมวิจัยอย่างเข้มงวด
+
+บริบท: ฉันกำลังเตรียมข้อเสนอโครงการวิจัย และมีข้อมูลความเชี่ยวชาญของทีมดังนี้
+[วางข้อมูลจาก Worksheet 1]
+
+งาน: จงสรุป Expertise Fingerprint ของทีม โดยแยกเป็น
+1. ความเชี่ยวชาญหลักที่มีหลักฐานรองรับ
+2. ทรัพยากรหรือสภาพแวดล้อมที่ช่วยให้โครงการเป็นไปได้
+3. ข้อจำกัดหรือช่องว่างของทีมที่ยังไม่ควรกล่าวอ้างเกินจริง
+
+เงื่อนไข: ห้ามเติมความเชี่ยวชาญที่ไม่ได้ระบุไว้ หากข้อมูลไม่พอให้บอกว่า “ข้อมูลไม่เพียงพอ”
+
+ผลลัพธ์ที่ต้องการ: ตาราง 3 คอลัมน์ ได้แก่ Evidence / Interpretation / Limitation</div>
+<div class="prompt-actions"><button class="copy-btn" data-copy="p1">คัดลอก Prompt</button><span class="copy-status" id="s-p1"></span></div>
+<div class="footer"><span>Prompt Lab 1</span><span class="progress-text">Slide 16</span></div>
+</section>
+<section class="slide" data-title="Break 1">
+<div class="badge-row"><span class="badge break">Break</span><span class="badge end">10.20–10.35 น.</span></div>
+<h1>พัก 15 นาที</h1>
+<p class="lead">ก่อนพัก ให้บันทึก Expertise Fingerprint ฉบับสั้นไว้ 5–7 บรรทัด เพื่อนำไปใช้ต่อในช่วง Trend, Demand และ Gap</p>
+<div class="footer"><span>Break</span><span class="progress-text">Slide 17</span></div>
+</section>
+<section class="slide section" data-title="Module 2 Trend Gap">
+<div class="badge-row"><span class="badge">Module 2</span><span class="badge">10.35–12.00 น.</span></div>
+<h1>Fit 2–3: ตรงโลก และตรงความต้องการ</h1>
+<p class="lead">ข้อเสนอโครงการที่ดีต้องตอบทั้งความก้าวหน้าทางวิชาการและความต้องการของผู้ใช้ประโยชน์</p>
+<div class="footer"><span>Trend + Demand + Gap Fit</span><span class="progress-text">Slide 18</span></div>
+</section>
+<section class="slide" data-title="Trend fit lecture">
+<div class="badge-row"><span class="badge lecture">Lecture</span><span class="badge end">ควรจบก่อน 10.45 น.</span></div>
+<h2>Fit 2: Trend Fit — งานนี้อยู่ตรงไหนของโลก</h2>
+<div class="row">
+<div class="card soft">
+<h3>มองแนวโน้ม</h3>
+<ul>
+<li>หัวข้อกำลังเติบโตหรือไม่</li>
+<li>มีความสำคัญต่อสาขาและสังคมหรือไม่</li>
+<li>มีโอกาสสร้าง contribution ใหม่หรือไม่</li>
+</ul>
+</div>
+<div class="card green">
+<h3>แหล่งข้อมูลที่ใช้ได้</h3>
+<ul>
+<li>ฐานข้อมูลบรรณมิติ / citation analytics</li>
+<li>บทความ review / systematic review</li>
+<li>เอกสารยุทธศาสตร์และประกาศทุน</li>
+<li>AI search ที่อ้างแหล่งข้อมูลตรวจสอบได้</li>
+</ul>
+</div>
+</div>
+<div class="footer"><span>Trend Fit</span><span class="progress-text">Slide 19</span></div>
+</section>
+<section class="slide" data-title="Trend worksheet">
+<div class="badge-row"><span class="badge hands">Hands-on</span><span class="badge end">ควรจบก่อน 11.00 น.</span></div>
+<h2>Worksheet 2: Trend Evidence</h2>
+<div class="worksheet">
+<table class="table">
+<thead><tr><th>ประเด็น</th><th>หลักฐานที่พบ</th><th>แหล่งข้อมูล</th><th>ความหมายต่อโจทย์วิจัย</th></tr></thead>
+<tbody>
+<tr><td>Emerging topic</td><td>...</td><td>...</td><td>...</td></tr>
+<tr><td>Global relevance</td><td>...</td><td>...</td><td>...</td></tr>
+<tr><td>Current limitation</td><td>...</td><td>...</td><td>...</td></tr>
+</tbody>
+</table>
+</div>
+<div class="callout green" style="margin-top:20px"><p>ให้เขียนเป็นหลักฐานสั้น ๆ ไม่ใช่ความเห็น เช่น “มี review ปีล่าสุดระบุว่า...” หรือ “ประกาศทุนระบุ priority เรื่อง...”</p></div>
+<div class="footer"><span>Worksheet 2</span><span class="progress-text">Slide 20</span></div>
+</section>
+<section class="slide" data-title="Demand gap lecture">
+<div class="badge-row"><span class="badge lecture">Lecture</span><span class="badge end">ควรจบก่อน 11.10 น.</span></div>
+<h2>Fit 3: Demand &amp; Gap Fit</h2>
+<div class="matrix">
+<div class="cell"><h3>Demand Fit</h3><p>ผู้ให้ทุน ผู้ใช้ประโยชน์ หรือระบบต้องการคำตอบเรื่องใด</p></div>
+<div class="cell"><h3>Research Gap</h3><p>องค์ความรู้ปัจจุบันยังตอบอะไรไม่ได้ หรือยังมีข้อจำกัดอะไร</p></div>
+<div class="cell"><h3>Policy / Practice Gap</h3><p>ปัญหาในการนำความรู้ไปใช้จริง ระบบบริการ นโยบาย หรือการจัดการ</p></div>
+<div class="cell"><h3>Feasible Gap</h3><p>ช่องว่างนั้นอยู่ในขอบเขตที่ทีมเรามีโอกาสตอบได้จริงหรือไม่</p></div>
+</div>
+<div class="footer"><span>Demand &amp; Gap Fit</span><span class="progress-text">Slide 21</span></div>
+</section>
+<section class="slide" data-title="Demand gap worksheet">
+<div class="badge-row"><span class="badge hands">Hands-on</span><span class="badge end">ควรจบก่อน 11.30 น.</span></div>
+<h2>Worksheet 3: Demand &amp; Gap Alignment</h2>
+<div class="row">
+<div class="worksheet">
+<div class="label">1) ผู้ใช้ประโยชน์หรือผู้ให้ทุนต้องการอะไร?</div><div class="field big">ระบุจาก TOR, policy, strategy, unmet need หรือ stakeholder pain point</div>
+<div class="label" style="margin-top:12px">2) ช่องว่างการวิจัยคืออะไร?</div><div class="field big">ระบุสิ่งที่วรรณกรรมยังตอบไม่ได้ / วิธีปัจจุบันยังมีข้อจำกัด</div>
+</div>
+<div class="worksheet">
+<div class="label">3) ช่องว่างนี้เชื่อมกับ expertise ของเราอย่างไร?</div><div class="field big">ระบุ evidence จาก Worksheet 1</div>
+<div class="label" style="margin-top:12px">4) อะไรที่ยังเป็น assumption?</div><div class="field big">จุดที่ต้องหา evidence เพิ่มก่อนเขียน proposal จริง</div>
+</div>
+</div>
+<div class="footer"><span>Worksheet 3</span><span class="progress-text">Slide 22</span></div>
+</section>
+<section class="slide" data-title="Prompt strict synthesis">
+<div class="badge-row"><span class="badge prompt">Prompt Lab</span><span class="badge end">ควรจบก่อน 11.50 น.</span></div>
+<h2>Prompt 2: สังเคราะห์ Research Questions</h2>
+<div class="promptbox" id="p2">บทบาท: ทำหน้าที่เป็นนักวิทยาศาสตร์ระดับสูงที่มีความเข้มงวดทางวิชาการ และเป็นผู้ประเมินทุนวิจัยระดับสากล
+
+บริบท: ฉันกำลังพัฒนา Proposal Concept Package และมีข้อมูลเชิงประจักษ์ 3 ส่วน ได้แก่
+1. Expertise Fingerprint ของทีม: [วางผลจาก Prompt 1]
+2. Trend Evidence: [วางข้อมูลจาก Worksheet 2]
+3. Demand &amp; Gap Alignment: [วางข้อมูลจาก Worksheet 3]
+
+งาน: จงวิเคราะห์ข้อมูลทั้ง 3 ส่วนเพื่อเสนอ Research Questions จำนวน 3–5 ข้อ ที่เป็นจุดตัดของข้อมูลทั้งหมด
+
+เงื่อนไข: ใช้เฉพาะข้อมูลที่ฉันให้มาเท่านั้น ห้ามเติมความรู้ใหม่ ห้ามเดา หากข้อมูลไม่เชื่อมโยงกันให้ระบุว่าไม่สามารถสร้างโจทย์ได้อย่างสมเหตุสมผล
+
+ผลลัพธ์ที่ต้องการ:
+- Research Question
+- Evidence จาก Expertise
+- Evidence จาก Trend
+- Evidence จาก Demand/Gap
+- ระดับความมั่นใจ: สูง / กลาง / ต่ำ
+- จุดที่ต้องหา evidence เพิ่ม</div>
+<div class="prompt-actions"><button class="copy-btn" data-copy="p2">คัดลอก Prompt</button><span class="copy-status" id="s-p2"></span></div>
+<div class="footer"><span>Strict synthesis prompt</span><span class="progress-text">Slide 23</span></div>
+</section>
+<section class="slide" data-title="RQ selection">
+<div class="badge-row"><span class="badge hands">Hands-on</span><span class="badge end">ควรจบก่อน 12.00 น.</span></div>
+<h2>เลือก Research Question ที่จะพัฒนาต่อ</h2>
+<div class="row-4">
+<div class="card soft"><div class="score">1</div><h3>Evidence</h3><p>มีหลักฐานรองรับทั้ง 3 ด้านหรือไม่</p></div>
+<div class="card green"><div class="score">2</div><h3>Fit</h3><p>ตรงกับศักยภาพทีมและบริบทผู้ให้ทุนหรือไม่</p></div>
+<div class="card purple"><div class="score">3</div><h3>Feasibility</h3><p>ทำได้จริงภายในเวลา งบประมาณ และทรัพยากรหรือไม่</p></div>
+<div class="card yellow"><div class="score">4</div><h3>Impact</h3><p>มี line of sight to impact ที่ชัดหรือไม่</p></div>
+</div>
+<div class="callout" style="margin-top:24px"><p>ให้เลือก 1 Research Question หลัก และเก็บอีก 1–2 ข้อเป็นทางเลือกสำรอง</p></div>
+<div class="footer"><span>Decision point</span><span class="progress-text">Slide 24</span></div>
+</section>
+<section class="slide" data-title="Lunch">
+<div class="badge-row"><span class="badge break">Lunch</span><span class="badge end">12.00–13.00 น.</span></div>
+<h1>พักกลางวัน</h1>
+<p class="lead">ก่อนกลับมา ให้เตรียม Research Question ที่เลือกไว้ 1 ข้อ และ evidence 3 บรรทัดที่สนับสนุนโจทย์นั้น</p>
+<div class="footer"><span>Lunch</span><span class="progress-text">Slide 25</span></div>
+</section>
+<section class="slide section" data-title="Module 3 Approach">
+<div class="badge-row"><span class="badge">Module 3</span><span class="badge">13.00–14.35 น.</span></div>
+<h1>Fit 4: ตรงวิธี</h1>
+<p class="lead">โจทย์วิจัยที่ดีต้องมีวิธีตอบที่สมเหตุสมผล เข้มงวด และอยู่ในขอบเขตที่ทีมทำได้จริง</p>
+<div class="footer"><span>Method Fit</span><span class="progress-text">Slide 26</span></div>
+</section>
+<section class="slide" data-title="Afternoon recap">
+<div class="badge-row"><span class="badge lecture">Lecture</span><span class="badge end">ควรจบก่อน 13.10 น.</span></div>
+<h2>กลับมาตั้งต้น: จาก RQ สู่ Research Approach</h2>
+<div class="step"><div class="number">1</div><p>RQ ถามอะไร และต้องการหลักฐานชนิดใดเพื่อตอบคำถามนั้น</p></div>
+<div class="step"><div class="number">2</div><p>ทีมมีวิธี เครื่องมือ หรือข้อมูลอะไรที่ตอบได้แล้ว</p></div>
+<div class="step"><div class="number">3</div><p>ส่วนใดต้องอาศัย collaborator หรือ evidence เพิ่มเติม</p></div>
+<div class="step"><div class="number">4</div><p>ผลลัพธ์ที่คาดหวังจะวัดได้อย่างไร และเชื่อมไป impact อย่างไร</p></div>
+<div class="footer"><span>RQ to approach</span><span class="progress-text">Slide 27</span></div>
+</section>
+<section class="slide" data-title="Approach principles">
+<div class="badge-row"><span class="badge lecture">Lecture</span><span class="badge end">ควรจบก่อน 13.22 น.</span></div>
+<h2>หลักคิดในการออกแบบ Research Approach</h2>
+<div class="row-3">
+<div class="card soft"><h3>Answerable</h3><p>วิธีวิจัยต้องตอบ hypothesis / RQ ได้จริง ไม่ใช่แค่ทำกิจกรรม</p></div>
+<div class="card green"><h3>Rigorous</h3><p>มี design, variable, data, analysis และ bias control ที่เหมาะสม</p></div>
+<div class="card purple"><h3>Feasible</h3><p>ทำได้จริงด้วยทีม เวลา งบประมาณ เครื่องมือ และ collaborator ที่มี</p></div>
+</div>
+<div class="callout danger" style="margin-top:24px"><p>ถ้าวิธีวิจัยไม่สอดคล้องกับโจทย์ ต่อให้เขียนสวยก็ไม่ควรส่ง</p></div>
+<div class="footer"><span>Approach principles</span><span class="progress-text">Slide 28</span></div>
+</section>
+<section class="slide" data-title="Prompt approach">
+<div class="badge-row"><span class="badge prompt">Prompt Lab</span><span class="badge end">ควรจบก่อน 13.45 น.</span></div>
+<h2>Prompt 3: ออกแบบ Research Approach</h2>
+<div class="promptbox" id="p3">บทบาท: ทำหน้าที่เป็นนักวิทยาศาสตร์ระดับสูง และผู้เชี่ยวชาญด้านการออกแบบคอนซอร์เทียมวิจัยระดับสากล
+
+บริบท:
+- Research Question ที่เลือก: [วาง RQ หลัก]
+- Expertise Fingerprint ของทีม: [วางผลจาก Prompt 1]
+- Evidence ด้าน Trend / Demand / Gap: [วางสรุปหลักฐานสำคัญ]
+
+งาน:
+1. ร่าง Research Approach เบื้องต้นเพื่อใช้ตอบ Research Question นี้ โดยยึดตามความเชี่ยวชาญที่ทีมมีอยู่จริง
+2. แบ่งวิธีวิจัยเป็น phases หรือ work packages
+3. ระบุ skill gap, method gap หรือ technology gap ที่ควรหาผู้ร่วมวิจัยมาเติมเต็ม
+
+เงื่อนไข: ห้ามสมมติว่าทีมมีเครื่องมือหรือทักษะที่ไม่ได้ระบุไว้ หากมีสิ่งที่จำเป็นแต่ทีมยังไม่มี ให้ระบุเป็น “ช่องว่างที่ต้องหาความร่วมมือ”
+
+ผลลัพธ์ที่ต้องการ:
+- Phase / Aim
+- Method เบื้องต้น
+- Evidence ที่รองรับว่า feasible
+- Gap / Risk
+- Collaborator profile ที่ควรหาเพิ่มเติม</div>
+<div class="prompt-actions"><button class="copy-btn" data-copy="p3">คัดลอก Prompt</button><span class="copy-status" id="s-p3"></span></div>
+<div class="footer"><span>Approach design prompt</span><span class="progress-text">Slide 29</span></div>
+</section>
+<section class="slide" data-title="Approach worksheet">
+<div class="badge-row"><span class="badge hands">Hands-on</span><span class="badge end">ควรจบก่อน 14.05 น.</span></div>
+<h2>Worksheet 4: Research Approach Canvas</h2>
+<table class="table">
+<thead><tr><th>Phase / Aim</th><th>จะตอบคำถามอะไร</th><th>ข้อมูล / วิธี</th><th>สิ่งที่ทีมมี</th><th>Gap / Risk</th></tr></thead>
+<tbody>
+<tr><td>Phase 1</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+<tr><td>Phase 2</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+<tr><td>Phase 3</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+</tbody>
+</table>
+<div class="speaker-note">ให้ผู้เข้าร่วมใช้ผลจาก AI เป็นร่าง แล้วแก้ด้วยความรู้จริงของตนเอง ห้ามคัดลอกแบบไม่ตรวจ</div>
+<div class="footer"><span>Worksheet 4</span><span class="progress-text">Slide 30</span></div>
+</section>
+<section class="slide" data-title="Specific aims lecture">
+<div class="badge-row"><span class="badge lecture">Lecture</span><span class="badge end">ควรจบก่อน 14.18 น.</span></div>
+<h2>Specific Aims: ไม่ใช่รายการสิ่งที่ต้องทำ</h2>
+<div class="row">
+<div class="card red">
+<h3>อ่อน</h3>
+<ul>
+<li>เก็บข้อมูลจากกลุ่มตัวอย่าง</li>
+<li>วิเคราะห์ข้อมูล</li>
+<li>เขียนรายงาน</li>
+</ul>
+</div>
+<div class="card green">
+<h3>แข็งแรง</h3>
+<ul>
+<li>ทดสอบความสัมพันธ์ระหว่างตัวแปรหลักกับ outcome</li>
+<li>ประเมินประสิทธิผลของ intervention</li>
+<li>พัฒนาและ validate model / tool / framework</li>
+</ul>
+</div>
+</div>
+<div class="callout" style="margin-top:22px"><p>Aim ที่ดีควรมี hypothesis, method, deliverable และความเป็นอิสระพอสมควร</p></div>
+<div class="footer"><span>Specific aims</span><span class="progress-text">Slide 31</span></div>
+</section>
+<section class="slide" data-title="Specific aims worksheet">
+<div class="badge-row"><span class="badge hands">Hands-on</span><span class="badge end">ควรจบก่อน 14.35 น.</span></div>
+<h2>Worksheet 5: Aim Architecture</h2>
+<table class="table">
+<thead><tr><th>Aim</th><th>Hypothesis / Question</th><th>Method</th><th>Deliverable</th><th>Risk if fail</th></tr></thead>
+<tbody>
+<tr><td>Aim 1</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+<tr><td>Aim 2</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+<tr><td>Aim 3</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+</tbody>
+</table>
+<div class="callout danger" style="margin-top:20px"><p>ถ้า Aim 1 ล้มเหลวแล้ว Aim 2–3 ทำต่อไม่ได้ทั้งหมด ต้องเขียน risk mitigation ให้ชัด</p></div>
+<div class="footer"><span>Worksheet 5</span><span class="progress-text">Slide 32</span></div>
+</section>
+<section class="slide" data-title="Break 2">
+<div class="badge-row"><span class="badge break">Break</span><span class="badge end">14.35–14.50 น.</span></div>
+<h1>พัก 15 นาที</h1>
+<p class="lead">กลับมาแล้วเราจะรวมข้อมูลทั้งหมดเป็น Proposal Concept Package และให้ AI ทำหน้าที่ reviewer จับจุดอ่อน</p>
+<div class="footer"><span>Break</span><span class="progress-text">Slide 33</span></div>
+</section>
+<section class="slide section" data-title="Module 4 Package QC">
+<div class="badge-row"><span class="badge">Module 4</span><span class="badge">14.50–16.30 น.</span></div>
+<h1>จาก Concept สู่ Reviewer-Ready Logic</h1>
+<p class="lead">ช่วงสุดท้ายคือการรวมร่าง ตรวจความสอดคล้อง และระบุจุดที่ต้องแก้ก่อนเขียน full proposal</p>
+<div class="footer"><span>Concept Package + QC</span><span class="progress-text">Slide 34</span></div>
+</section>
+<section class="slide" data-title="Concept package structure">
+<div class="badge-row"><span class="badge lecture">Lecture</span><span class="badge end">ควรจบก่อน 15.00 น.</span></div>
+<h2>โครงสร้าง Proposal Concept Package</h2>
+<div class="row-3">
+<div class="card soft"><h3>1. Working Title</h3><p>ชื่อชั่วคราวที่สื่อ problem, method และ impact</p></div>
+<div class="card green"><h3>2. Problem &amp; Gap</h3><p>ปัญหา ความต้องการ และช่องว่างที่มีหลักฐานรองรับ</p></div>
+<div class="card purple"><h3>3. Research Question</h3><p>คำถามหลักและเหตุผลที่ควรตอบ</p></div>
+<div class="card yellow"><h3>4. Specific Aims</h3><p>2–3 aims ที่วัดผลได้และสอดคล้องกัน</p></div>
+<div class="card soft"><h3>5. Approach</h3><p>phase, method, data, analysis, risk</p></div>
+<div class="card green"><h3>6. Expected Impact</h3><p>outputs, users, translation pathway, next step</p></div>
+</div>
+<div class="footer"><span>Concept package template</span><span class="progress-text">Slide 35</span></div>
+</section>
+<section class="slide" data-title="Prompt concept package">
+<div class="badge-row"><span class="badge prompt">Prompt Lab</span><span class="badge end">ควรจบก่อน 15.25 น.</span></div>
+<h2>Prompt 4: รวมเป็น Proposal Concept Package</h2>
+<div class="promptbox" id="p4">บทบาท: ทำหน้าที่เป็นนักเขียนข้อเสนอโครงการวิจัยระดับสากล และนักวิทยาศาสตร์ที่มีความเข้มงวดทางวิชาการ
+
+บริบท: ฉันมีข้อมูลต่อไปนี้
+1. Expertise Fingerprint: [วางข้อมูล]
+2. Trend Evidence: [วางข้อมูล]
+3. Demand &amp; Gap Alignment: [วางข้อมูล]
+4. Research Question ที่เลือก: [วางข้อมูล]
+5. Research Approach Canvas: [วางข้อมูล]
+6. Aim Architecture: [วางข้อมูล]
+
+งาน: จงจัดระเบียบข้อมูลทั้งหมดเป็น Proposal Concept Package โดยยังไม่ต้องเขียน full proposal
+
+โครงสร้างที่ต้องการ:
+1. Working Title 3 ทางเลือก
+2. Problem Statement 1 ย่อหน้า
+3. Research Gap &amp; Rationale
+4. Main Research Question
+5. Specific Aims 2–3 ข้อ
+6. Research Approach แบบ phases
+7. Expected Outputs / Outcomes / Impact
+8. Key Risks and Mitigation
+9. Evidence still needed before full proposal
+
+เงื่อนไข: ห้ามแต่ง citation ห้ามเติมข้อมูลที่ไม่มี หากส่วนใดขาดหลักฐานให้ใส่ [ต้องการหลักฐานเพิ่มเติม]</div>
+<div class="prompt-actions"><button class="copy-btn" data-copy="p4">คัดลอก Prompt</button><span class="copy-status" id="s-p4"></span></div>
+<div class="footer"><span>Concept package prompt</span><span class="progress-text">Slide 36</span></div>
+</section>
+<section class="slide" data-title="Line of sight impact">
+<div class="badge-row"><span class="badge lecture">Lecture</span><span class="badge end">ควรจบก่อน 15.35 น.</span></div>
+<h2>ตรวจเส้นทางสู่ผลกระทบ</h2>
+<div class="row-5">
+<div class="card"><h3>Activities</h3><p>ทำอะไร</p></div>
+<div class="card"><h3>Outputs</h3><p>ได้ผลิตผลอะไร</p></div>
+<div class="card"><h3>Outcomes</h3><p>ใครเปลี่ยนอะไร</p></div>
+<div class="card"><h3>Users</h3><p>ใครใช้ประโยชน์</p></div>
+<div class="card"><h3>Impact</h3><p>เกิดคุณค่าใด</p></div>
+</div>
+<div class="callout" style="margin-top:24px"><p>ข้อเสนอที่ดีต้องไม่จบที่ “จะตีพิมพ์” แต่ต้องอธิบายว่าผลลัพธ์จะเดินทางไปสู่ผู้ใช้ประโยชน์อย่างไร</p></div>
+<div class="footer"><span>Line of sight to impact</span><span class="progress-text">Slide 37</span></div>
+</section>
+<section class="slide" data-title="Reviewer QC lecture">
+<div class="badge-row"><span class="badge lecture">Lecture</span><span class="badge qc">Reviewer QC</span><span class="badge end">ควรจบก่อน 15.45 น.</span></div>
+<h2>ให้ AI เป็น Reviewer ไม่ใช่ Ghostwriter</h2>
+<div class="row">
+<div class="card green">
+<h3>สั่งให้ AI ทำ</h3>
+<ul>
+<li>ตรวจ logic flow</li>
+<li>ชี้จุดอ่อน</li>
+<li>ถามคำถามแบบ reviewer</li>
+<li>ระบุ evidence ที่ยังขาด</li>
+</ul>
+</div>
+<div class="card red">
+<h3>ห้ามสั่งให้ AI ทำทันที</h3>
+<ul>
+<li>เขียนใหม่ทับทั้ง proposal</li>
+<li>เติม literature เอง</li>
+<li>เพิ่ม method ที่ทีมไม่มี</li>
+<li>ขยาย impact เกินหลักฐาน</li>
+</ul>
+</div>
+</div>
+<div class="footer"><span>Reviewer-centric QC</span><span class="progress-text">Slide 38</span></div>
+</section>
+<section class="slide" data-title="Prompt reviewer qc">
+<div class="badge-row"><span class="badge prompt">Prompt Lab</span><span class="badge qc">Critique only</span><span class="badge end">ควรจบก่อน 16.05 น.</span></div>
+<h2>Prompt 5: Reviewer Critique</h2>
+<div class="promptbox" id="p5">บทบาท: ทำหน้าที่เป็นประธานคณะกรรมการประเมินทุนวิจัยระดับนานาชาติที่มีความเข้มงวดสูงสุด
+
+บริบท: ฉันมี Proposal Concept Package ฉบับร่างดังนี้
+[วางผลจาก Prompt 4]
+
+งาน: จงประเมินร่างนี้แบบ reviewer โดยพิจารณา
+1. Logic Flow: ปัญหา &gt; ช่องว่าง &gt; คำถามวิจัย &gt; aims &gt; วิธีวิจัย &gt; ผลลัพธ์ สอดคล้องหรือไม่
+2. Alignment: Title, Research Question, Specific Aims และ Approach ไปในทิศทางเดียวกันหรือไม่
+3. Feasibility: วิธีวิจัยทำได้จริงด้วย expertise และ resources ที่ระบุหรือไม่
+4. Risk: มี fatal flaw หรือ risk สำคัญใดที่ยังไม่ได้จัดการ
+5. Evidence Gap: ยังต้องหา evidence อะไรเพิ่มก่อนเขียน full proposal
+
+เงื่อนไข: ห้ามเขียนเนื้อหาใหม่ให้ฉัน ให้ทำหน้าที่ critique, identify flaws และตั้งคำถามเท่านั้น หากข้อมูลไม่พอให้บอกว่าข้อมูลไม่เพียงพอ
+
+ผลลัพธ์ที่ต้องการ:
+- Strengths
+- Weaknesses
+- Fatal Flaws
+- Reviewer Questions
+- Priority Revision List 5 ข้อ</div>
+<div class="prompt-actions"><button class="copy-btn" data-copy="p5">คัดลอก Prompt</button><span class="copy-status" id="s-p5"></span></div>
+<div class="footer"><span>Reviewer critique prompt</span><span class="progress-text">Slide 39</span></div>
+</section>
+<section class="slide" data-title="Revision sprint">
+<div class="badge-row"><span class="badge hands">Hands-on</span><span class="badge end">ควรจบก่อน 16.20 น.</span></div>
+<h2>Revision Sprint: แก้ 5 จุดที่สำคัญที่สุด</h2>
+<div class="row">
+<div class="card soft">
+<h3>ให้จัดลำดับความสำคัญ</h3>
+<ol>
+<li>Fatal flaw ที่ทำให้โครงการไม่น่าให้ทุน</li>
+<li>Logic gap ที่ทำให้ reviewer ไม่เชื่อ</li>
+<li>Evidence gap ที่ต้องค้นเพิ่ม</li>
+<li>Method gap ที่ต้องหา collaborator</li>
+<li>Impact gap ที่ยังไม่มี pathway</li>
+</ol>
+</div>
+<div class="worksheet">
+<div class="label">Revision Priority List</div>
+<div class="field line">1) ...</div>
+<div class="field line">2) ...</div>
+<div class="field line">3) ...</div>
+<div class="field line">4) ...</div>
+<div class="field line">5) ...</div>
+</div>
+</div>
+<div class="footer"><span>Revision sprint</span><span class="progress-text">Slide 40</span></div>
+</section>
+<section class="slide" data-title="Final checklist">
+<div class="badge-row"><span class="badge hands">Reflection</span><span class="badge output">Final Output</span><span class="badge end">ควรจบก่อน 16.27 น.</span></div>
+<h2>Checklist ก่อนออกจากห้อง</h2>
+<div class="row">
+<div class="card green">
+<h3>ควรมีครบ</h3>
+<ul>
+<li>Research Fit Canvas</li>
+<li>Research Question หลัก 1 ข้อ</li>
+<li>Specific Aims 2–3 ข้อ</li>
+<li>Research Approach แบบ phases</li>
+<li>Risk / Collaborator Gap</li>
+<li>Reviewer Priority Revision List</li>
+</ul>
+</div>
+<div class="card yellow">
+<h3>สิ่งที่ต้องทำต่อ</h3>
+<ul>
+<li>ค้น literature และ policy evidence เพิ่ม</li>
+<li>ตรวจ TOR ของแหล่งทุนล่าสุด</li>
+<li>หา collaborator เพื่อปิด method gap</li>
+<li>ค่อยพัฒนาเป็น full proposal</li>
+</ul>
+</div>
+</div>
+<div class="footer"><span>Final checklist</span><span class="progress-text">Slide 41</span></div>
+</section>
+<section class="slide" data-title="Closing">
+<div class="badge-row"><span class="badge lecture">Closing</span><span class="badge end">ควรจบก่อน 16.30 น.</span></div>
+<h2>จากวันนี้ไปสู่ Full Proposal</h2>
+<div class="wide-right">
+<div class="card soft">
+<h3>ลำดับที่แนะนำ</h3>
+<ol>
+<li>เติม evidence</li>
+<li>ปรับ aims และ approach</li>
+<li>ตรวจ feasibility กับทีม</li>
+<li>ให้ AI critique อีกครั้ง</li>
+<li>เขียน full proposal</li>
+</ol>
+</div>
+<div class="callout green">
+<p class="big-quote">AI ที่ดีไม่ได้ทำให้เรา “คิดน้อยลง” แต่ช่วยให้เราคิดเป็นระบบขึ้น เห็นช่องว่างเร็วขึ้น และเขียนข้อเสนอที่น่าเชื่อถือขึ้น</p>
+</div>
+</div>
+<div class="footer"><span>Thank you</span><span class="progress-text">Slide 42</span></div>
+</section>
+<section class="slide" data-title="Appendix prompt bank">
+<div class="badge-row"><span class="badge prompt">Appendix</span><span class="badge end">ใช้เป็นสไลด์สำรอง</span></div>
+<h2>Prompt Bank ที่ใช้วันนี้</h2>
+<div class="row-5">
+<div class="card purple"><h3>Prompt 1</h3><p>Expertise Fingerprint</p></div>
+<div class="card purple"><h3>Prompt 2</h3><p>Research Question Synthesis</p></div>
+<div class="card purple"><h3>Prompt 3</h3><p>Research Approach Design</p></div>
+<div class="card purple"><h3>Prompt 4</h3><p>Concept Package Draft</p></div>
+<div class="card purple"><h3>Prompt 5</h3><p>Reviewer Critique</p></div>
+</div>
+<div class="callout" style="margin-top:26px"><p>ใช้ prompt เหล่านี้ซ้ำได้ แต่ต้องเปลี่ยน input ตามบริบทงานวิจัยจริงเสมอ</p></div>
+<div class="footer"><span>Appendix</span><span class="progress-text">Slide 43</span></div>
+</section>
+<section class="slide" data-title="Appendix timing">
+<div class="badge-row"><span class="badge lecture">Appendix</span><span class="badge end">ใช้เป็นสไลด์สำรอง</span></div>
+<h2>Run of Show แบบย่อสำหรับวิทยากร</h2>
+<div class="row">
+<div class="card">
+<div class="timebox"><div class="time">08.30</div><div class="desc">ลงทะเบียน / เตรียมเครื่องมือ</div></div>
+<div class="timebox"><div class="time">09.00</div><div class="desc">All about AI: พื้นฐาน บทบาท ข้อจำกัด และ guardrails</div></div>
+<div class="timebox"><div class="time">09.30</div><div class="desc">เริ่ม workshop: output, 4 Fits และ worksheet 0</div></div>
+<div class="timebox"><div class="time">09.55</div><div class="desc">เข้าสู่ Expertise Fit</div></div>
+<div class="timebox"><div class="time">10.20</div><div class="desc">พักเบรก</div></div>
+<div class="timebox"><div class="time">10.35</div><div class="desc">Trend / Demand / Gap</div></div>
+<div class="timebox"><div class="time">12.00</div><div class="desc">พักกลางวัน</div></div>
+</div>
+<div class="card">
+<div class="timebox"><div class="time">13.00</div><div class="desc">Research Approach</div></div>
+<div class="timebox"><div class="time">14.35</div><div class="desc">พักเบรก</div></div>
+<div class="timebox"><div class="time">14.50</div><div class="desc">Concept Package</div></div>
+<div class="timebox"><div class="time">15.45</div><div class="desc">Reviewer QC</div></div>
+<div class="timebox"><div class="time">16.30</div><div class="desc">ปิด workshop</div></div>
+</div>
+</div>
+<div class="footer"><span>Facilitator run sheet</span><span class="progress-text">Slide 44</span></div>
+</section>
+</div>
+<div class="controls">
+<button class="secondary" id="prev">← ก่อนหน้า</button>
+<span class="counter" id="counter">1 / 44</span>
+<button id="next">ถัดไป →</button>
+<button class="secondary" id="print">พิมพ์ / Save PDF</button>
+</div>
+<script>
+(function(){
+  const slides=[...document.querySelectorAll('.slide')];
+  const counter=document.getElementById('counter');
+  const bar=document.getElementById('bar');
+  let idx=0;
+  function show(i){
+    idx=Math.max(0,Math.min(slides.length-1,i));
+    slides.forEach((s,n)=>s.classList.toggle('active',n===idx));
+    counter.textContent=(idx+1)+' / '+slides.length;
+    bar.style.width=((idx+1)/slides.length*100)+'%';
+    history.replaceState(null,'','#'+(idx+1));
+  }
+  document.getElementById('prev').addEventListener('click',()=>show(idx-1));
+  document.getElementById('next').addEventListener('click',()=>show(idx+1));
+  document.getElementById('print').addEventListener('click',()=>window.print());
+  document.addEventListener('keydown',e=>{
+    if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();show(idx+1)}
+    if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();show(idx-1)}
+    if(e.key==='Home')show(0); if(e.key==='End')show(slides.length-1);
+  });
+  document.querySelectorAll('.copy-btn').forEach(btn=>{
+    btn.addEventListener('click',async()=>{
+      const id=btn.getAttribute('data-copy');
+      const el=document.getElementById(id);
+      const st=document.getElementById('s-'+id);
+      try{await navigator.clipboard.writeText(el.innerText); st.textContent='คัดลอกแล้ว'; setTimeout(()=>st.textContent='',1800)}
+      catch(err){st.textContent='กรุณาเลือกข้อความแล้วคัดลอกเอง';}
+    });
+  });
+  const hash=parseInt(location.hash.replace('#',''),10);
+  show(Number.isFinite(hash)?hash-1:0);
+})();
+</script>
+</body>
+</html>
